@@ -1,0 +1,5 @@
+2015-06-10 18:49:59,487: INFO: MainThread: Logging in.
+2015-06-10 18:50:01,731: INFO: MainThread: Logged in.
+2015-06-10 18:50:01,731: INFO: message_sender: Worker thread reporting for duty.
+2015-06-10 18:50:23,951: INFO: message_sender: Now serving customer 1, ('send', '14219', '@kitty you have entered the domain of the Zombie Pony Queen!')
+2015-06-10 18:50:55,286: INFO: message_sender: Now serving customer 2, ('send', '14219', '@kitty you have entered the domain of the Zombie Pony Queen!')
