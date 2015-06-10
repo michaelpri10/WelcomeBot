@@ -34,7 +34,7 @@ def main():
     global room
     room = client.get_room(room_id)
     room.join()
-    room.watch(on_message)
+    room.watch(on_enter)
 
     print "(You are now in room #%s on %s.)" % (room_id, host_id)
     while True:
@@ -44,9 +44,9 @@ def main():
     client.logout()
 
 
-def on_message(message, client):
+def on_enter(message, client):
     if isinstance(message, ChatExchange.chatexchange.events.UserEntered):
-        room.send_message("@kitty you have entered the domain of the Zombie Pony Queen!")
+        room.send_message("@"+message.user.name+" you have entered the domain of the Zombie Pony Queen!")
 
 
 def setup_logging():
