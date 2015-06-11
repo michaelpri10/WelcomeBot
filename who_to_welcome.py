@@ -15,11 +15,11 @@ def check_user(user):
     
   if new==true:
     try:
-	  logfile = open("users.txt", "a")
-	  try:
-	    logfile.write(user)
-	  finally:
-	    logfile.close()
-	  except IOError:
-	    pass
-return new
+      logfile = open("users.txt", "a")
+      try:
+      	logfile.write(user)
+      finally:
+      	logfile.close()
+    except IOError:
+      pass
+  return new
