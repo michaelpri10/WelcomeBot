@@ -69,7 +69,7 @@ def main():
     room = client.get_room(room_id)
     room.join()
     room.watch(on_enter)
-    room.watch(on_leave);
+    room.watch(on_leave)
 
     print "(You are now in room #%s on %s.)" % (room_id, host_id)
     while True:
