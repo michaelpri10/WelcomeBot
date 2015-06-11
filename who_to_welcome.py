@@ -1,7 +1,7 @@
 def check_user(user):
   new = true
   try:
-  	f = open("users.txt", "r")
+    f = open("users.txt", "r")
     try:
       file = f.readlines()
     finally:
