@@ -1,25 +1,25 @@
 def check_user(user):
-  new = true
-  try:
-    f = open("users.txt", "r")
+    new = True
     try:
-      file = f.readlines()
-    finally:
-      f.close()
-  except IOError:
-    pass
-    
-  for x in len(file):
-  	if user == file[x]:
-      new=false
-    
-  if new==true:
-    try:
-      logfile = open("users.txt", "a")
-      try:
-      	logfile.write(user)
-      finally:
-      	logfile.close()
+        f = open("users.txt", "r")
+        try:
+            file_contents = f.readlines()
+        finally:
+            f.close()
     except IOError:
-      pass
-  return new
+        return False
+    
+    for x in range(0, len(file_contents)):
+        if user == file_contents[x]:
+            new = False
+    
+    if new is True:
+        try:
+            logfile = open("users.txt", "a")
+            try:
+                logfile.write(user)
+            finally:
+                logfile.close()
+        except IOError:
+            pass
+    return new
