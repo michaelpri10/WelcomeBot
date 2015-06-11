@@ -1,13 +1,17 @@
-2015-06-10 18:49:59,487: INFO: MainThread: Logging in.
-2015-06-10 18:50:01,731: INFO: MainThread: Logged in.
-2015-06-10 18:50:01,731: INFO: message_sender: Worker thread reporting for duty.
-2015-06-10 18:50:23,951: INFO: message_sender: Now serving customer 1, ('send', '14219', '@kitty you have entered the domain of the Zombie Pony Queen!')
-2015-06-10 18:50:55,286: INFO: message_sender: Now serving customer 2, ('send', '14219', '@kitty you have entered the domain of the Zombie Pony Queen!')
-2015-06-10 19:12:46,368: INFO: MainThread: Logging in.
-2015-06-10 19:12:49,256: INFO: MainThread: Logged in.
-2015-06-10 19:12:49,257: INFO: message_sender: Worker thread reporting for duty.
-2015-06-10 19:13:02,148: INFO: message_sender: Now serving customer 1, ('send', '14219', '@kitty you have entered the domain of the Zombie Pony Queen!')
-2015-06-10 19:25:13,355: INFO: MainThread: Logging in.
-2015-06-10 19:25:15,883: INFO: MainThread: Logged in.
-2015-06-10 19:25:15,884: INFO: message_sender: Worker thread reporting for duty.
-2015-06-10 19:25:25,549: INFO: message_sender: Now serving customer 1, ('send', '14219', u'@michaelpri you have entered the domain of the Zombie Pony Queen!')
+2015-06-10 20:03:41,103: INFO: MainThread: Logging in.
+2015-06-10 20:03:42,926: INFO: MainThread: Logged in.
+2015-06-10 20:03:42,927: INFO: message_sender: Worker thread reporting for duty.
+2015-06-10 20:06:56,883: INFO: MainThread: Logging in.
+2015-06-10 20:07:33,296: INFO: MainThread: Logging in.
+2015-06-10 20:07:35,124: INFO: MainThread: Logged in.
+2015-06-10 20:07:35,124: INFO: message_sender: Worker thread reporting for duty.
+2015-06-10 20:07:38,790: INFO: message_sender: Now serving customer 1, ('send', '22091', u'@TPCyborg Welcome to the domain of the zombie queen!')
+2015-06-10 20:07:54,439: INFO: message_sender: Now serving customer 2, ('send', '22091', u'@michaelpri Welcome to the domain of the zombie queen!')
+2015-06-10 20:09:06,362: INFO: message_sender: Now serving customer 3, ('send', '22091', u'@Oodles Welcome to the domain of the zombie queen!')
+2015-06-10 20:09:53,281: INFO: message_sender: Now serving customer 4, ('send', '22091', u'@michaelpri Welcome to the domain of the zombie queen!')
+2015-06-10 20:13:58,788: INFO: MainThread: Logging in.
+2015-06-10 20:14:00,631: INFO: MainThread: Logged in.
+2015-06-10 20:14:00,631: INFO: message_sender: Worker thread reporting for duty.
+2015-06-10 20:14:04,621: INFO: message_sender: Now serving customer 1, ('send', '22091', u'@TPCyborg You have entered the domain of the Zombie Pony Queen!')
+2015-06-10 20:14:26,528: INFO: message_sender: Now serving customer 2, ('send', '22091', u'@michaelpri You have entered the domain of the Zombie Pony Queen!')
+2015-06-10 20:15:47,933: INFO: message_sender: Now serving customer 3, ('send', '22091', u'@michaelpri You have entered the domain of the Zombie Pony Queen!')

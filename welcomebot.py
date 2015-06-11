@@ -16,8 +16,38 @@ def main():
     setup_logging()
     # Run `. setp.sh` to set the below testing environment variables
 
-    host_id = 'stackexchange.com'
-    room_id = '14219'  # Charcoal Chatbot Sandbox
+    def welcome_bot_host_options():
+        print "Welcome Bot Host Site Options (select 1, 2, or 3)"
+        print "  1. chat.stackexchange.com"
+        print "  2. chat.meta.stackexchange.com"
+        print "  3. chat.stackoverflow.com"
+        print "What will be your Welcome Bot's host site?"
+    welcome_bot_host_options()
+    host_id_choice = raw_input()
+    while host_id_choice not in ['1','2','3']:
+        print "Invalid Choice"
+        welcome_bot_host_options()
+        host_id_choice = raw_input()
+    if host_id_choice == '1':
+        print "You have chosen chat.stackexchange.com as your Welcome Bot's host site."
+        host_id = 'stackexchange.com'
+    elif host_id_choice == '2':
+        print "You have chosen meta.chat.stackexchange.com as your Welcome Bot's host site."
+        host_id = 'meta.stackexchange.com'
+    elif host_id_choice == '3':
+        print "You have chosen chat.stackoverflow.com as your Welcome Bot's host site."
+        host_id = 'stackoverflow.com'
+
+    print "What is the room's ID?"
+    room_id_choice = raw_input()
+    while room_id_choice.isdigit() == False:
+        print "Invalid Input, must be a number"
+        room_id_choice = raw_input()
+    room_id = room_id_choice  # Charcoal Chatbot Sandbox
+
+    print "What would you like the welcome message to be?"
+    global welcome_message
+    welcome_message = raw_input()
 
     if 'ChatExchangeU' in os.environ:
         email = os.environ['ChatExchangeU']
@@ -46,7 +76,7 @@ def main():
 
 def on_enter(message, client):
     if isinstance(message, ChatExchange.chatexchange.events.UserEntered):
-        room.send_message("@"+message.user.name+" you have entered the domain of the Zombie Pony Queen!")
+        room.send_message("@"+message.user.name+" "+welcome_message)
 
 
 def setup_logging():
