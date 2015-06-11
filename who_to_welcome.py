@@ -1,25 +1,23 @@
-def check_user(user):
-    new = True
-    try:
-        f = open("users.txt", "r")
-        try:
-            file_contents = f.readlines()
-        finally:
-            f.close()
-    except IOError:
-        return False
-    
-    for x in range(0, len(file_contents)):
-        if user == file_contents[x]:
-            new = False
-    
-    if new is True:
-        try:
-            logfile = open("users.txt", "a")
-            try:
-                logfile.write(user)
-            finally:
-                logfile.close()
-        except IOError:
-            new = False
-    return new
+import shelve
+
+def check_user(user_id, id_room, enter_or_leave):
+    f = shelve.open("users.txt")
+
+    if (id_room+enter_or_leave) in f:
+        if user_id in f[id_room+enter_or_leave]:
+            print f[id_room+enter_or_leave]
+            print False
+            return False
+        else:
+            f[id_room+enter_or_leave] += [user_id]
+            print f[id_room+enter_or_leave]
+            print True
+            return True
+    else:
+        f[id_room+enter_or_leave] = []
+        f[id_room+enter_or_leave] += [user_id]
+        print f[id_room+enter_or_leave]
+        print True
+        return True
+
+    f.close()

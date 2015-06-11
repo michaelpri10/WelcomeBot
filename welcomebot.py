@@ -8,6 +8,7 @@ import sys
 
 import ChatExchange.chatexchange.client
 import ChatExchange.chatexchange.events
+import who_to_welcome
 
 
 logger = logging.getLogger(__name__)
@@ -43,6 +44,7 @@ def main():
     while room_id_choice.isdigit() == False:
         print "Invalid Input, must be a number"
         room_id_choice = raw_input()
+    global room_id
     room_id = room_id_choice  # Charcoal Chatbot Sandbox
 
     print "What would you like the welcome message to be?"
@@ -67,7 +69,7 @@ def main():
 
     global bot
     bot = client.get_me()
-    
+
     global room
     room = client.get_room(room_id)
     room.join()
@@ -87,14 +89,16 @@ def on_enter(message, client):
         if message.user.id == bot.id:
             room.send_message("I'm alive :)")
         else:
-            room.send_message("@"+message.user.name+" "+welcome_message)
+            if who_to_welcome.check_user(message.user.id, room_id, 'enter'):
+                room.send_message("@"+message.user.name+" "+welcome_message)
 
 def on_leave(message, client):
     if isinstance(message, ChatExchange.chatexchange.events.UserLeft):
         if message.user.id == bot.id:
             room.send_message("I'm dead :(")
         else:
-            room.send_message("@"+message.user.name+" "+leave_message)
+            if who_to_welcome.check_user(message.user.id, room_id, 'leave'):
+                room.send_message("@"+message.user.name+" "+leave_message)
 
 
 def setup_logging():
