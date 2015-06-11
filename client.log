@@ -149,3 +149,35 @@
 2015-06-11 15:17:50,143: INFO: message_sender: Now serving customer 3, ('send', '815', u'@Byte Commander Welcome ')
 2015-06-11 15:18:30,913: INFO: message_sender: Now serving customer 4, ('send', '815', u'@Jacob Gray Goodbye')
 2015-06-11 15:19:18,992: INFO: message_sender: Now serving customer 5, ('send', '815', u'@Jacob Gray Welcome ')
+2015-06-11 15:36:46,985: INFO: MainThread: Logging in.
+2015-06-11 15:36:48,912: INFO: MainThread: Logged in.
+2015-06-11 15:36:48,913: INFO: message_sender: Worker thread reporting for duty.
+2015-06-11 15:36:52,557: INFO: message_sender: Now serving customer 1, ('send', '815', "I'm alive :)")
+2015-06-11 15:48:47,523: INFO: MainThread: Logging in.
+2015-06-11 15:48:49,951: INFO: MainThread: Logged in.
+2015-06-11 15:48:49,951: INFO: message_sender: Worker thread reporting for duty.
+2015-06-11 15:51:23,614: INFO: MainThread: Logging in.
+2015-06-11 15:51:25,447: INFO: MainThread: Logged in.
+2015-06-11 15:51:25,448: INFO: message_sender: Worker thread reporting for duty.
+2015-06-11 15:52:00,875: INFO: MainThread: Logged out.
+2015-06-11 15:52:00,875: INFO: message_sender: Worker thread exits.
+2015-06-11 15:54:12,863: INFO: MainThread: Logging in.
+2015-06-11 15:54:15,905: INFO: MainThread: Logged in.
+2015-06-11 15:54:15,905: INFO: message_sender: Worker thread reporting for duty.
+2015-06-11 15:56:12,613: INFO: MainThread: Logging in.
+2015-06-11 15:56:14,259: INFO: MainThread: Logged in.
+2015-06-11 15:56:14,261: INFO: message_sender: Worker thread reporting for duty.
+2015-06-11 15:57:54,634: INFO: MainThread: Logging in.
+2015-06-11 15:57:56,165: INFO: MainThread: Logged in.
+2015-06-11 15:57:56,166: INFO: message_sender: Worker thread reporting for duty.
+2015-06-11 15:58:54,141: INFO: MainThread: Logging in.
+2015-06-11 15:58:57,148: INFO: MainThread: Logged in.
+2015-06-11 15:58:57,149: INFO: message_sender: Worker thread reporting for duty.
+2015-06-11 16:00:43,813: INFO: MainThread: Logging in.
+2015-06-11 16:00:45,798: INFO: MainThread: Logged in.
+2015-06-11 16:00:45,798: INFO: message_sender: Worker thread reporting for duty.
+2015-06-11 16:07:51,069: INFO: MainThread: Logged out.
+2015-06-11 16:09:26,738: INFO: MainThread: Logging in.
+2015-06-11 16:09:29,589: INFO: MainThread: Logged in.
+2015-06-11 16:09:29,590: INFO: message_sender: Worker thread reporting for duty.
+2015-06-11 16:10:26,480: INFO: message_sender: Now serving customer 1, ('send', '815', u'@JABFreeware Welcome')

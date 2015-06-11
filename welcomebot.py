@@ -8,6 +8,7 @@ import sys
 
 import ChatExchange.chatexchange.client
 import ChatExchange.chatexchange.events
+import ChatExchange.chatexchange.browser
 import who_to_welcome
 
 
@@ -90,15 +91,15 @@ def on_enter(message, client):
             room.send_message("I'm alive :)")
         else:
             if who_to_welcome.check_user(message.user.id, room_id, 'enter'):
-                room.send_message("@"+message.user.name+" "+welcome_message)
+                room.send_message("@"+message.user.name.replace(" ","")+" "+welcome_message)
 
 def on_leave(message, client):
     if isinstance(message, ChatExchange.chatexchange.events.UserLeft):
         if message.user.id == bot.id:
             room.send_message("I'm dead :(")
-        else:
-            if who_to_welcome.check_user(message.user.id, room_id, 'leave'):
-                room.send_message("@"+message.user.name+" "+leave_message)
+#         else:
+#             if who_to_welcome.check_user(message.user.id, room_id, 'leave'):
+#                 room.send_message("@"+message.user.name+" "+leave_message)
 
 
 def setup_logging():
