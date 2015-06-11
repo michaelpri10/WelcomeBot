@@ -48,7 +48,7 @@ def main():
     print "What would you like the welcome message to be?"
     global welcome_message
     welcome_message = raw_input()
-    
+
     print "What would you like the leave message to be?"
     global leave_message
     leave_message = raw_input()
@@ -65,6 +65,9 @@ def main():
     client = ChatExchange.chatexchange.client.Client(host_id)
     client.login(email, password)
 
+    global bot
+    bot = client.get_me()
+    
     global room
     room = client.get_room(room_id)
     room.join()
@@ -81,11 +84,17 @@ def main():
 
 def on_enter(message, client):
     if isinstance(message, ChatExchange.chatexchange.events.UserEntered):
-        room.send_message("@"+message.user.name+" "+welcome_message)
+        if message.user.id == bot.id:
+            room.send_message("I'm alive :)")
+        else:
+            room.send_message("@"+message.user.name+" "+welcome_message)
 
 def on_leave(message, client):
     if isinstance(message, ChatExchange.chatexchange.events.UserLeft):
-        room.send_message("@"+message.user.name+" "+leave_message)
+        if message.user.id == bot.id:
+            room.send_message("I'm dead :(")
+        else:
+            room.send_message("@"+message.user.name+" "+leave_message)
 
 
 def setup_logging():

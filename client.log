@@ -15,3 +15,23 @@
 2015-06-10 20:14:04,621: INFO: message_sender: Now serving customer 1, ('send', '22091', u'@TPCyborg You have entered the domain of the Zombie Pony Queen!')
 2015-06-10 20:14:26,528: INFO: message_sender: Now serving customer 2, ('send', '22091', u'@michaelpri You have entered the domain of the Zombie Pony Queen!')
 2015-06-10 20:15:47,933: INFO: message_sender: Now serving customer 3, ('send', '22091', u'@michaelpri You have entered the domain of the Zombie Pony Queen!')
+2015-06-10 23:07:16,377: INFO: MainThread: Logging in.
+2015-06-10 23:07:54,770: INFO: MainThread: Logging in.
+2015-06-10 23:07:56,526: INFO: MainThread: Logged in.
+2015-06-10 23:07:56,527: INFO: message_sender: Worker thread reporting for duty.
+2015-06-10 23:11:16,698: INFO: MainThread: Logging in.
+2015-06-10 23:11:18,607: INFO: MainThread: Logged in.
+2015-06-10 23:11:18,607: INFO: message_sender: Worker thread reporting for duty.
+2015-06-10 23:14:06,337: INFO: MainThread: Logging in.
+2015-06-10 23:14:11,218: INFO: MainThread: Logged in.
+2015-06-10 23:14:11,219: INFO: message_sender: Worker thread reporting for duty.
+2015-06-10 23:14:56,303: INFO: MainThread: Logging in.
+2015-06-10 23:14:58,201: INFO: MainThread: Logged in.
+2015-06-10 23:14:58,202: INFO: message_sender: Worker thread reporting for duty.
+2015-06-10 23:16:37,798: INFO: MainThread: Logging in.
+2015-06-10 23:16:39,531: INFO: MainThread: Logged in.
+2015-06-10 23:16:39,532: INFO: message_sender: Worker thread reporting for duty.
+2015-06-10 23:16:43,184: INFO: message_sender: Now serving customer 1, ('send', '815', "I'm alive :)")
+2015-06-10 23:17:08,418: INFO: message_sender: Now serving customer 2, ('send', '815', "I'm dead :(")
+2015-06-10 23:17:14,565: INFO: message_sender: Now serving customer 3, ('send', '815', "I'm alive :)")
+2015-06-10 23:17:23,956: INFO: message_sender: Now serving customer 4, ('send', '815', u'@michaelpri Welcome')
