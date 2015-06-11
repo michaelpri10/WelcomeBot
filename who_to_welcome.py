@@ -21,5 +21,5 @@ def check_user(user):
             finally:
                 logfile.close()
         except IOError:
-            pass
+            new = False
     return new
