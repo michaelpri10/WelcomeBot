@@ -10,6 +10,7 @@ import ChatExchange.chatexchange.client
 import ChatExchange.chatexchange.events
 import ChatExchange.chatexchange.browser
 import who_to_welcome
+import image_search
 
 
 logger = logging.getLogger(__name__)
@@ -52,9 +53,9 @@ def main():
     global welcome_message
     welcome_message = raw_input()
 
-    print "What would you like the leave message to be?"
-    global leave_message
-    leave_message = raw_input()
+    # print "What would you like the leave message to be?"
+    # global leave_message
+    # leave_message = raw_input()
 
     if 'ChatExchangeU' in os.environ:
         email = os.environ['ChatExchangeU']
@@ -75,31 +76,46 @@ def main():
     room = client.get_room(room_id)
     room.join()
     room.watch(on_enter)
-    room.watch(on_leave)
+    # room.watch(on_leave)
+    room.watch(on_command)
 
     print "(You are now in room #%s on %s.)" % (room_id, host_id)
+    room.send_message("I'm alive :)")
+
     while True:
         message = raw_input("<< ")
         room.send_message(message)
 
+    room.send_message("I'm dead :(")
     client.logout()
 
 
-def on_enter(message, client):
-    if isinstance(message, ChatExchange.chatexchange.events.UserEntered):
-        if message.user.id == bot.id:
-            room.send_message("I'm alive :)")
+def on_enter(event, client):
+    if isinstance(event, ChatExchange.chatexchange.events.UserEntered):
+        if event.user.id == bot.id:
+            pass
         else:
-            if who_to_welcome.check_user(message.user.id, room_id, 'enter'):
-                room.send_message("@"+message.user.name.replace(" ","")+" "+welcome_message)
+            if who_to_welcome.check_user(event.user.id, room_id, 'enter'):
+                room.send_message("@"+event.user.name.replace(" ","")+" "+welcome_message)
 
-def on_leave(message, client):
-    if isinstance(message, ChatExchange.chatexchange.events.UserLeft):
-        if message.user.id == bot.id:
-            room.send_message("I'm dead :(")
+# def on_leave(event, client):
+#     if isinstance(event, ChatExchange.chatexchange.events.UserLeft):
+#         if event.user.id == bot.id:
+#             room.send_message("I'm dead :(")
 #         else:
-#             if who_to_welcome.check_user(message.user.id, room_id, 'leave'):
-#                 room.send_message("@"+message.user.name+" "+leave_message)
+#             if who_to_welcome.check_user(event.user.id, room_id, 'leave'):
+#                 room.send_message("@"+event.user.name+" "+leave_message)
+
+def on_command(message, client):
+    if isinstance(message, ChatExchange.chatexchange.events.MessagePosted):
+        if message.content.startswith("!!_image"):
+            print message.content
+            search_term = "_".join(message.content.split()[1:])
+            print search_term
+            image = image_search.search_image(search_term)
+            print image
+            room.send_message(image)
+
 
 
 def setup_logging():

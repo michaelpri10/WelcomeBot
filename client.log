@@ -1,183 +1,67 @@
-2015-06-10 20:03:41,103: INFO: MainThread: Logging in.
-2015-06-10 20:03:42,926: INFO: MainThread: Logged in.
-2015-06-10 20:03:42,927: INFO: message_sender: Worker thread reporting for duty.
-2015-06-10 20:06:56,883: INFO: MainThread: Logging in.
-2015-06-10 20:07:33,296: INFO: MainThread: Logging in.
-2015-06-10 20:07:35,124: INFO: MainThread: Logged in.
-2015-06-10 20:07:35,124: INFO: message_sender: Worker thread reporting for duty.
-2015-06-10 20:07:38,790: INFO: message_sender: Now serving customer 1, ('send', '22091', u'@TPCyborg Welcome to the domain of the zombie queen!')
-2015-06-10 20:07:54,439: INFO: message_sender: Now serving customer 2, ('send', '22091', u'@michaelpri Welcome to the domain of the zombie queen!')
-2015-06-10 20:09:06,362: INFO: message_sender: Now serving customer 3, ('send', '22091', u'@Oodles Welcome to the domain of the zombie queen!')
-2015-06-10 20:09:53,281: INFO: message_sender: Now serving customer 4, ('send', '22091', u'@michaelpri Welcome to the domain of the zombie queen!')
-2015-06-10 20:13:58,788: INFO: MainThread: Logging in.
-2015-06-10 20:14:00,631: INFO: MainThread: Logged in.
-2015-06-10 20:14:00,631: INFO: message_sender: Worker thread reporting for duty.
-2015-06-10 20:14:04,621: INFO: message_sender: Now serving customer 1, ('send', '22091', u'@TPCyborg You have entered the domain of the Zombie Pony Queen!')
-2015-06-10 20:14:26,528: INFO: message_sender: Now serving customer 2, ('send', '22091', u'@michaelpri You have entered the domain of the Zombie Pony Queen!')
-2015-06-10 20:15:47,933: INFO: message_sender: Now serving customer 3, ('send', '22091', u'@michaelpri You have entered the domain of the Zombie Pony Queen!')
-2015-06-10 23:07:16,377: INFO: MainThread: Logging in.
-2015-06-10 23:07:54,770: INFO: MainThread: Logging in.
-2015-06-10 23:07:56,526: INFO: MainThread: Logged in.
-2015-06-10 23:07:56,527: INFO: message_sender: Worker thread reporting for duty.
-2015-06-10 23:11:16,698: INFO: MainThread: Logging in.
-2015-06-10 23:11:18,607: INFO: MainThread: Logged in.
-2015-06-10 23:11:18,607: INFO: message_sender: Worker thread reporting for duty.
-2015-06-10 23:14:06,337: INFO: MainThread: Logging in.
-2015-06-10 23:14:11,218: INFO: MainThread: Logged in.
-2015-06-10 23:14:11,219: INFO: message_sender: Worker thread reporting for duty.
-2015-06-10 23:14:56,303: INFO: MainThread: Logging in.
-2015-06-10 23:14:58,201: INFO: MainThread: Logged in.
-2015-06-10 23:14:58,202: INFO: message_sender: Worker thread reporting for duty.
-2015-06-10 23:16:37,798: INFO: MainThread: Logging in.
-2015-06-10 23:16:39,531: INFO: MainThread: Logged in.
-2015-06-10 23:16:39,532: INFO: message_sender: Worker thread reporting for duty.
-2015-06-10 23:16:43,184: INFO: message_sender: Now serving customer 1, ('send', '815', "I'm alive :)")
-2015-06-10 23:17:08,418: INFO: message_sender: Now serving customer 2, ('send', '815', "I'm dead :(")
-2015-06-10 23:17:14,565: INFO: message_sender: Now serving customer 3, ('send', '815', "I'm alive :)")
-2015-06-10 23:17:23,956: INFO: message_sender: Now serving customer 4, ('send', '815', u'@michaelpri Welcome')
-2015-06-11 11:54:18,814: INFO: MainThread: Logging in.
-2015-06-11 11:54:20,759: INFO: MainThread: Logged in.
-2015-06-11 11:54:20,759: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 11:54:24,443: INFO: message_sender: Now serving customer 1, ('send', '22091', "I'm alive :)")
-2015-06-11 11:57:54,942: INFO: MainThread: Logging in.
-2015-06-11 11:57:56,584: INFO: MainThread: Logged in.
-2015-06-11 11:57:56,585: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 12:01:21,516: INFO: MainThread: Logging in.
-2015-06-11 12:01:23,245: INFO: MainThread: Logged in.
-2015-06-11 12:01:23,246: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 12:06:17,939: INFO: MainThread: Logging in.
-2015-06-11 12:06:19,789: INFO: MainThread: Logged in.
-2015-06-11 12:06:19,790: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 12:06:23,461: INFO: message_sender: Now serving customer 1, ('send', '22091', "I'm alive :)")
-2015-06-11 12:09:00,640: INFO: MainThread: Logging in.
-2015-06-11 12:09:02,659: INFO: MainThread: Logged in.
-2015-06-11 12:09:02,660: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 12:09:06,304: INFO: message_sender: Now serving customer 1, ('send', '22091', "I'm alive :)")
-2015-06-11 12:12:02,361: INFO: MainThread: Logging in.
-2015-06-11 12:12:04,072: INFO: MainThread: Logged in.
-2015-06-11 12:12:04,072: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 12:12:07,697: INFO: message_sender: Now serving customer 1, ('send', '22091', "I'm alive :)")
-2015-06-11 12:15:28,202: INFO: message_sender: Now serving customer 2, ('send', '22091', "I'm dead :(")
-2015-06-11 12:16:46,247: INFO: MainThread: Logging in.
-2015-06-11 12:16:47,899: INFO: MainThread: Logged in.
-2015-06-11 12:16:47,900: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 12:16:51,570: INFO: message_sender: Now serving customer 1, ('send', '22091', "I'm alive :)")
-2015-06-11 12:20:15,823: INFO: MainThread: Logging in.
-2015-06-11 12:20:17,648: INFO: MainThread: Logged in.
-2015-06-11 12:20:17,649: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 12:20:21,333: INFO: message_sender: Now serving customer 1, ('send', '22091', "I'm alive :)")
-2015-06-11 12:20:33,877: INFO: message_sender: Now serving customer 2, ('send', '22091', u'@michaelpri Welcome')
-2015-06-11 12:20:49,497: INFO: message_sender: Now serving customer 3, ('send', '22091', u'@michaelpri Goodbye')
-2015-06-11 12:20:55,751: INFO: message_sender: Now serving customer 4, ('send', '22091', u'@michaelpri Welcome')
-2015-06-11 12:21:11,386: INFO: message_sender: Now serving customer 5, ('send', '22091', u'@michaelpri Goodbye')
-2015-06-11 12:21:16,539: INFO: message_sender: Now serving customer 6, ('send', '22091', u'@michaelpri Welcome')
-2015-06-11 12:22:56,447: INFO: MainThread: Logging in.
-2015-06-11 12:22:58,135: INFO: MainThread: Logged in.
-2015-06-11 12:22:58,136: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 12:23:01,763: INFO: message_sender: Now serving customer 1, ('send', '22091', "I'm alive :)")
-2015-06-11 12:23:14,310: INFO: message_sender: Now serving customer 2, ('send', '22091', u'@michaelpri Welcome')
-2015-06-11 12:24:05,404: INFO: message_sender: Now serving customer 3, ('send', '22091', u'@afonsomatos Welcome')
-2015-06-11 12:24:32,848: INFO: message_sender: Now serving customer 4, ('send', '22091', u'@michaelpri Goodbye')
-2015-06-11 12:24:37,997: INFO: message_sender: Now serving customer 5, ('send', '22091', u'@michaelpri Welcome')
-2015-06-11 12:25:44,929: INFO: message_sender: Now serving customer 6, ('send', '22091', u'@michaelpri Goodbye')
-2015-06-11 13:25:54,355: INFO: MainThread: Logging in.
-2015-06-11 13:25:56,924: INFO: MainThread: Logged in.
-2015-06-11 13:25:56,925: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 13:26:13,023: INFO: message_sender: Now serving customer 1, ('send', '22622', u'@michaelpri Welcome')
-2015-06-11 13:26:38,113: INFO: message_sender: Now serving customer 2, ('send', '22622', u'@michaelpri Goodbye')
-2015-06-11 13:26:44,343: INFO: message_sender: Now serving customer 3, ('send', '22622', u'@michaelpri Welcome')
-2015-06-11 13:28:43,295: INFO: MainThread: Logging in.
-2015-06-11 13:28:45,938: INFO: MainThread: Logged in.
-2015-06-11 13:28:45,939: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 13:28:52,666: INFO: message_sender: Now serving customer 1, ('send', '22622', u'@michaelpri Welcome')
-2015-06-11 13:29:08,325: INFO: message_sender: Now serving customer 2, ('send', '22622', u'@michaelpri Goodbye')
-2015-06-11 13:29:17,708: INFO: message_sender: Now serving customer 3, ('send', '22622', u'@michaelpri Welcome')
-2015-06-11 14:03:19,354: INFO: message_sender: Now serving customer 4, ('send', '22622', u'@michaelpri Goodbye')
-2015-06-11 14:35:56,124: INFO: MainThread: Logging in.
-2015-06-11 14:35:57,884: INFO: MainThread: Logged in.
-2015-06-11 14:35:57,885: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 14:36:01,521: INFO: message_sender: Now serving customer 1, ('send', '815', "I'm alive :)")
-2015-06-11 14:40:29,911: INFO: MainThread: Logging in.
-2015-06-11 14:40:31,602: INFO: MainThread: Logged in.
-2015-06-11 14:40:31,602: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 14:40:42,175: INFO: message_sender: Now serving customer 1, ('send', '815', u'@michaelpri Welcome')
-2015-06-11 14:40:47,365: INFO: message_sender: Now serving customer 2, ('send', '815', u'@michaelpri Goodbye')
-2015-06-11 14:41:04,153: INFO: message_sender: Now serving customer 3, ('send', '815', u'@michaelpri Goodbye')
-2015-06-11 14:41:10,358: INFO: message_sender: Now serving customer 4, ('send', '815', u'@michaelpri Welcome')
-2015-06-11 14:41:48,071: INFO: message_sender: Now serving customer 5, ('send', '815', u'@michaelpri Goodbye')
-2015-06-11 14:45:21,171: INFO: MainThread: Logging in.
-2015-06-11 14:45:23,118: INFO: MainThread: Logged in.
-2015-06-11 14:45:23,119: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 14:46:28,682: INFO: MainThread: Logging in.
-2015-06-11 14:46:30,471: INFO: MainThread: Logged in.
-2015-06-11 14:46:30,474: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 14:46:37,293: INFO: message_sender: Now serving customer 1, ('send', '815', u'@michaelpri Goodbye')
-2015-06-11 14:46:46,638: INFO: message_sender: Now serving customer 2, ('send', '815', u'@michaelpri Welcome')
-2015-06-11 14:47:02,364: INFO: message_sender: Now serving customer 3, ('send', '815', u'@michaelpri Goodbye')
-2015-06-11 14:47:08,565: INFO: message_sender: Now serving customer 4, ('send', '815', u'@michaelpri Welcome')
-2015-06-11 14:50:15,875: INFO: MainThread: Logging in.
-2015-06-11 14:50:17,844: INFO: MainThread: Logged in.
-2015-06-11 14:50:17,845: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 14:50:28,024: INFO: message_sender: Now serving customer 1, ('send', '815', u'@michaelpri Goodbye')
-2015-06-11 14:50:37,958: INFO: message_sender: Now serving customer 2, ('send', '815', u'@michaelpri Welcome')
-2015-06-11 14:51:56,529: INFO: message_sender: Now serving customer 3, ('send', '815', u'@michaelpri Goodbye')
-2015-06-11 14:52:30,968: INFO: message_sender: Now serving customer 4, ('send', '815', u'@michaelpri Welcome')
-2015-06-11 14:54:37,026: INFO: MainThread: Logging in.
-2015-06-11 14:54:38,764: INFO: MainThread: Logged in.
-2015-06-11 14:54:38,764: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 14:54:45,545: INFO: message_sender: Now serving customer 1, ('send', '815', u'@michaelpri Welcome')
-2015-06-11 14:54:54,953: INFO: message_sender: Now serving customer 2, ('send', '815', u'@michaelpri Goodbye')
-2015-06-11 14:55:04,301: INFO: message_sender: Now serving customer 3, ('send', '815', u'@michaelpri Welcome')
-2015-06-11 15:00:44,096: INFO: MainThread: Logging in.
-2015-06-11 15:00:45,972: INFO: MainThread: Logged in.
-2015-06-11 15:00:45,974: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 15:00:49,645: INFO: message_sender: Now serving customer 1, ('send', '815', "I'm alive :)")
-2015-06-11 15:01:05,308: INFO: message_sender: Now serving customer 2, ('send', '815', u'@michaelpri Welcome to the room')
-2015-06-11 15:01:20,936: INFO: message_sender: Now serving customer 3, ('send', '815', u'@michaelpri Goodbye from the room')
-2015-06-11 15:08:30,133: INFO: MainThread: Logging in.
-2015-06-11 15:08:31,897: INFO: MainThread: Logged in.
-2015-06-11 15:08:31,901: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 15:08:51,226: INFO: message_sender: Now serving customer 1, ('send', '815', u'@michaelpri Welcome')
-2015-06-11 15:09:00,681: INFO: message_sender: Now serving customer 2, ('send', '815', u'@michaelpri Goodbye')
-2015-06-11 15:10:28,427: INFO: message_sender: Now serving customer 3, ('send', '815', u'@Jacob Gray Welcome')
-2015-06-11 15:10:37,828: INFO: message_sender: Now serving customer 4, ('send', '815', u'@michaelpri Welcome')
-2015-06-11 15:16:04,122: INFO: MainThread: Logging in.
-2015-06-11 15:16:06,134: INFO: MainThread: Logged in.
-2015-06-11 15:16:06,135: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 15:16:09,803: INFO: message_sender: Now serving customer 1, ('send', '815', "I'm alive :)")
-2015-06-11 15:17:40,766: INFO: message_sender: Now serving customer 2, ('send', '815', u'@Byte Commander Goodbye')
-2015-06-11 15:17:50,143: INFO: message_sender: Now serving customer 3, ('send', '815', u'@Byte Commander Welcome ')
-2015-06-11 15:18:30,913: INFO: message_sender: Now serving customer 4, ('send', '815', u'@Jacob Gray Goodbye')
-2015-06-11 15:19:18,992: INFO: message_sender: Now serving customer 5, ('send', '815', u'@Jacob Gray Welcome ')
-2015-06-11 15:36:46,985: INFO: MainThread: Logging in.
-2015-06-11 15:36:48,912: INFO: MainThread: Logged in.
-2015-06-11 15:36:48,913: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 15:36:52,557: INFO: message_sender: Now serving customer 1, ('send', '815', "I'm alive :)")
-2015-06-11 15:48:47,523: INFO: MainThread: Logging in.
-2015-06-11 15:48:49,951: INFO: MainThread: Logged in.
-2015-06-11 15:48:49,951: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 15:51:23,614: INFO: MainThread: Logging in.
-2015-06-11 15:51:25,447: INFO: MainThread: Logged in.
-2015-06-11 15:51:25,448: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 15:52:00,875: INFO: MainThread: Logged out.
-2015-06-11 15:52:00,875: INFO: message_sender: Worker thread exits.
-2015-06-11 15:54:12,863: INFO: MainThread: Logging in.
-2015-06-11 15:54:15,905: INFO: MainThread: Logged in.
-2015-06-11 15:54:15,905: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 15:56:12,613: INFO: MainThread: Logging in.
-2015-06-11 15:56:14,259: INFO: MainThread: Logged in.
-2015-06-11 15:56:14,261: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 15:57:54,634: INFO: MainThread: Logging in.
-2015-06-11 15:57:56,165: INFO: MainThread: Logged in.
-2015-06-11 15:57:56,166: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 15:58:54,141: INFO: MainThread: Logging in.
-2015-06-11 15:58:57,148: INFO: MainThread: Logged in.
-2015-06-11 15:58:57,149: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 16:00:43,813: INFO: MainThread: Logging in.
-2015-06-11 16:00:45,798: INFO: MainThread: Logged in.
-2015-06-11 16:00:45,798: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 16:07:51,069: INFO: MainThread: Logged out.
-2015-06-11 16:09:26,738: INFO: MainThread: Logging in.
-2015-06-11 16:09:29,589: INFO: MainThread: Logged in.
-2015-06-11 16:09:29,590: INFO: message_sender: Worker thread reporting for duty.
-2015-06-11 16:10:26,480: INFO: message_sender: Now serving customer 1, ('send', '815', u'@JABFreeware Welcome')
+2015-06-11 23:17:23,452: INFO: MainThread: Logging in.
+2015-06-11 23:17:26,275: INFO: MainThread: Logged in.
+2015-06-11 23:17:26,275: INFO: message_sender: Worker thread reporting for duty.
+2015-06-11 23:17:39,322: INFO: message_sender: Now serving customer 1, ('send', '22622', u'@michaelpri Welcome')
+2015-06-11 23:19:37,286: INFO: MainThread: Logging in.
+2015-06-11 23:19:41,673: INFO: MainThread: Logged in.
+2015-06-11 23:19:41,674: INFO: message_sender: Worker thread reporting for duty.
+2015-06-11 23:20:40,246: INFO: message_sender: Now serving customer 1, ('send', '22622', 'hello')
+2015-06-11 23:22:22,112: INFO: MainThread: Logging in.
+2015-06-11 23:22:24,639: INFO: MainThread: Logged in.
+2015-06-11 23:22:24,639: INFO: message_sender: Worker thread reporting for duty.
+2015-06-11 23:30:19,769: INFO: MainThread: Logging in.
+2015-06-11 23:30:22,913: INFO: MainThread: Logged in.
+2015-06-11 23:30:22,913: INFO: message_sender: Worker thread reporting for duty.
+2015-06-11 23:32:15,037: INFO: MainThread: Logging in.
+2015-06-11 23:32:20,477: INFO: MainThread: Logged in.
+2015-06-11 23:32:20,478: INFO: message_sender: Worker thread reporting for duty.
+2015-06-11 23:33:00,784: INFO: message_sender: Now serving customer 1, ('send', '22622', '//upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/28px-Cat03.jpg')
+2015-06-11 23:36:09,272: INFO: MainThread: Logging in.
+2015-06-11 23:36:12,145: INFO: MainThread: Logged in.
+2015-06-11 23:36:12,145: INFO: message_sender: Worker thread reporting for duty.
+2015-06-11 23:36:12,448: INFO: message_sender: Now serving customer 1, ('send', '22622', "I'm alive :)")
+2015-06-11 23:36:52,822: INFO: MainThread: Logging in.
+2015-06-11 23:36:55,269: INFO: MainThread: Logged in.
+2015-06-11 23:36:55,269: INFO: message_sender: Worker thread reporting for duty.
+2015-06-11 23:36:55,573: INFO: message_sender: Now serving customer 1, ('send', '22622', "I'm alive :)")
+2015-06-11 23:37:00,719: INFO: message_sender: Now serving customer 2, ('send', '22622', u'@TPCyborg Hey')
+2015-06-11 23:40:04,004: INFO: MainThread: Logging in.
+2015-06-11 23:40:07,076: INFO: MainThread: Logged in.
+2015-06-11 23:40:07,076: INFO: message_sender: Worker thread reporting for duty.
+2015-06-11 23:40:07,380: INFO: message_sender: Now serving customer 1, ('send', '22622', "I'm alive :)")
+2015-06-11 23:40:20,514: INFO: message_sender: Now serving customer 2, ('send', '22622', 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Laitche-P013.jpg/220px-Laitche-P013.jpg')
+2015-06-11 23:43:29,069: INFO: MainThread: Logging in.
+2015-06-11 23:43:31,841: INFO: MainThread: Logged in.
+2015-06-11 23:43:31,841: INFO: message_sender: Worker thread reporting for duty.
+2015-06-11 23:43:32,135: INFO: message_sender: Now serving customer 1, ('send', '22622', "I'm alive :)")
+2015-06-11 23:43:39,884: INFO: message_sender: Now serving customer 2, ('send', '22622', 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/DetailofTheImperialPrinceandhisdogNerobyJean-BaptisteCarpeaux1865MarbleMuseed%27Orsaymharrsch.jpg/130px-DetailofTheImperialPrinceandhisdogNerobyJean-BaptisteCarpeaux1865MarbleMuseed%27Orsaymharrsch.jpg')
+2015-06-11 23:43:52,786: INFO: message_sender: Now serving customer 3, ('send', '22622', 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Black_Cat_Nala.jpg/402px-Black_Cat_Nala.jpg')
+2015-06-11 23:44:09,813: INFO: message_sender: Now serving customer 4, ('send', '22622', 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/TapetumLucidum.JPG/220px-TapetumLucidum.JPG')
+2015-06-11 23:44:33,131: INFO: message_sender: Now serving customer 5, ('send', '22622', 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/AfricanWildCat.jpg/220px-AfricanWildCat.jpg')
+2015-06-11 23:46:12,366: INFO: MainThread: Logging in.
+2015-06-11 23:46:15,013: INFO: MainThread: Logged in.
+2015-06-11 23:46:15,013: INFO: message_sender: Worker thread reporting for duty.
+2015-06-11 23:46:15,330: INFO: message_sender: Now serving customer 1, ('send', '22622', "I'm alive :)")
+2015-06-11 23:46:25,358: INFO: message_sender: Now serving customer 2, ('send', '22622', 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Jackal_Cape_cross_2009.JPG/220px-Jackal_Cape_cross_2009.JPG')
+2015-06-11 23:47:16,363: INFO: message_sender: Now serving customer 3, ('send', '22622', 'hey')
+2015-06-11 23:48:23,845: INFO: MainThread: Logging in.
+2015-06-11 23:48:26,338: INFO: MainThread: Logged in.
+2015-06-11 23:48:26,339: INFO: message_sender: Worker thread reporting for duty.
+2015-06-11 23:48:26,658: INFO: message_sender: Now serving customer 1, ('send', '22622', "I'm alive :)")
+2015-06-11 23:49:30,364: INFO: MainThread: Logging in.
+2015-06-11 23:49:32,851: INFO: MainThread: Logged in.
+2015-06-11 23:49:32,852: INFO: message_sender: Worker thread reporting for duty.
+2015-06-11 23:49:33,152: INFO: message_sender: Now serving customer 1, ('send', '22622', "I'm alive :)")
+2015-06-11 23:49:46,343: INFO: message_sender: Now serving customer 2, ('send', '22622', 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Rod_of_Asclepius2.svg/6px-Rod_of_Asclepius2.svg.png')
+2015-06-11 23:51:27,600: INFO: MainThread: Logging in.
+2015-06-11 23:51:32,149: INFO: MainThread: Logged in.
+2015-06-11 23:51:32,150: INFO: message_sender: Worker thread reporting for duty.
+2015-06-11 23:51:32,490: INFO: message_sender: Now serving customer 1, ('send', '22622', "I'm alive :)")
+2015-06-11 23:51:42,567: INFO: message_sender: Now serving customer 2, ('send', '22622', 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Rod_of_Asclepius2.svg/8px-Rod_of_Asclepius2.svg.png')
+2015-06-11 23:51:56,780: INFO: message_sender: Now serving customer 3, ('send', '22622', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Feral_cat_Virginia_crop.jpg/170px-Feral_cat_Virginia_crop.jpg')
+2015-06-11 23:53:29,577: INFO: message_sender: Now serving customer 4, ('send', '22622', '!!_image french open')
+2015-06-11 23:54:11,757: INFO: MainThread: Logging in.
+2015-06-11 23:54:14,556: INFO: MainThread: Logged in.
+2015-06-11 23:54:14,556: INFO: message_sender: Worker thread reporting for duty.
+2015-06-11 23:54:15,041: INFO: message_sender: Now serving customer 1, ('send', '22622', "I'm alive :)")
+2015-06-11 23:56:13,964: INFO: message_sender: Now serving customer 2, ('send', '22622', 'I am working ')
