@@ -1,20 +1,13 @@
 import urllib2
-from html.parser import HTMLParser
-from html.entities import name2codepoint
-
-class parserHTML(HTMLParser):
-    def handle_starttag(self, tag, attrs):
-        print("Start tag:", tag)
-        for attr in attrs:
-            print("attr:", attr)
-
+from BeautifulSoup import BeautifulSoup
 
 def search_image(string):
-	url = 'https://www.google.com/search?tbm=isch&q='+string # write the url here
+	url = 'https://duckduckgo.com/?q='+string+'&iax=1&ia=images' #DuckDuckGO!!!!!!
 	socket = urllib2.urlopen(url)
 	HTMLdata = socket.read()
 	socket.close()
-	parser = parseHTML()
+	parsed_html = BeautifulSoup(HTMLdata)
+	return parsed_html.find('tile--img__img')['src']
 	
 
 
