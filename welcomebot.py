@@ -5,6 +5,7 @@ import logging.handlers
 import os
 import random
 import sys
+import time
 
 import ChatExchange.chatexchange.client
 import ChatExchange.chatexchange.events
@@ -79,11 +80,12 @@ def main():
     while True:
         message = raw_input("<< ")
         if message == "die":
+            room.send_message("I'm dead :(")
+            time.sleep(0.4)
             break
         else:
             room.send_message(message)
 
-    room.send_message("I'm dead :(")
     client.logout()
 
 
@@ -97,17 +99,20 @@ def on_enter(event, client):
 
 def on_command(message, client):
     if isinstance(message, ChatExchange.chatexchange.events.MessagePosted):
+        print "Message Posted"
         if message.content.startswith("!!_image"):
+            print "Is image request"
             search_term = "".join(message.content.split()[1:])
             image = image_search.search_image(search_term)
+            print image
             if image is False:
                 print "No Image"
-                room.send_message("@"+message.user.name+" No image was found for "+message.content.split()[1:])
+                room.send_message("@"+message.user.name.replace(" ","")+" No image was found for "+search_term)
             else:
                 print message.content
                 print search_term
-                print image
                 room.send_message(image)
+                print ""
 
 def setup_logging():
     logging.basicConfig(level=logging.INFO)
