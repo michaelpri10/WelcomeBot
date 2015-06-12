@@ -12,7 +12,6 @@ import ChatExchange.chatexchange.browser
 import who_to_welcome
 import image_search
 
-
 logger = logging.getLogger(__name__)
 
 def main():
@@ -53,10 +52,6 @@ def main():
     global welcome_message
     welcome_message = raw_input()
 
-    # print "What would you like the leave message to be?"
-    # global leave_message
-    # leave_message = raw_input()
-
     if 'ChatExchangeU' in os.environ:
         email = os.environ['ChatExchangeU']
     else:
@@ -76,7 +71,6 @@ def main():
     room = client.get_room(room_id)
     room.join()
     room.watch(on_enter)
-    # room.watch(on_leave)
     room.watch(on_command)
 
     print "(You are now in room #%s on %s.)" % (room_id, host_id)
@@ -84,7 +78,10 @@ def main():
 
     while True:
         message = raw_input("<< ")
-        room.send_message(message)
+        if message == "die":
+            break
+        else:
+            room.send_message(message)
 
     room.send_message("I'm dead :(")
     client.logout()
@@ -98,25 +95,19 @@ def on_enter(event, client):
             if who_to_welcome.check_user(event.user.id, room_id, 'enter'):
                 room.send_message("@"+event.user.name.replace(" ","")+" "+welcome_message)
 
-# def on_leave(event, client):
-#     if isinstance(event, ChatExchange.chatexchange.events.UserLeft):
-#         if event.user.id == bot.id:
-#             room.send_message("I'm dead :(")
-#         else:
-#             if who_to_welcome.check_user(event.user.id, room_id, 'leave'):
-#                 room.send_message("@"+event.user.name+" "+leave_message)
-
 def on_command(message, client):
     if isinstance(message, ChatExchange.chatexchange.events.MessagePosted):
         if message.content.startswith("!!_image"):
-            print message.content
-            search_term = "_".join(message.content.split()[1:])
-            print search_term
+            search_term = "".join(message.content.split()[1:])
             image = image_search.search_image(search_term)
-            print image
-            room.send_message(image)
-
-
+            if image is False:
+                print "No Image"
+                room.send_message("@"+message.user.name+" No image was found for "+message.content.split()[1:])
+            else:
+                print message.content
+                print search_term
+                print image
+                room.send_message(image)
 
 def setup_logging():
     logging.basicConfig(level=logging.INFO)
@@ -133,7 +124,6 @@ def setup_logging():
         "%(asctime)s: %(levelname)s: %(threadName)s: %(message)s"
     ))
     wrapper_logger.addHandler(wrapper_handler)
-
 
 if __name__ == '__main__':
     main(*sys.argv[1:])
