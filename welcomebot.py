@@ -71,8 +71,8 @@ def main():
     global room
     room = client.get_room(room_id)
     room.join()
-    room.watch(on_enter)
     room.watch(on_command)
+    room.watch(on_enter)
 
     print "(You are now in room #%s on %s.)" % (room_id, host_id)
     room.send_message("I'm alive :)")
@@ -98,21 +98,24 @@ def on_enter(event, client):
                 room.send_message("@"+event.user.name.replace(" ","")+" "+welcome_message)
 
 def on_command(message, client):
+    print "watchCalled"
     if isinstance(message, ChatExchange.chatexchange.events.MessagePosted):
         print "Message Posted"
         if message.content.startswith("!!_image"):
             print "Is image request"
-            search_term = "".join(message.content.split()[1:])
-            image = image_search.search_image(search_term)
-            print image
-            if image is False:
-                print "No Image"
-                room.send_message("@"+message.user.name.replace(" ","")+" No image was found for "+search_term)
+            if len(message.content.split()) == 1:
+                pass
             else:
-                print message.content
-                print search_term
-                room.send_message(image)
-                print ""
+                search_term = "".join(message.content.split()[1:])
+                image = image_search.search_image(search_term)
+                print image
+                if image is False:
+                    print "No Image"
+                    room.send_message("@"+message.user.name.replace(" ","")+" No image was found for "+search_term)
+                else:
+                    print message.content
+                    print search_term
+                    room.send_message(image)
 
 def setup_logging():
     logging.basicConfig(level=logging.INFO)
