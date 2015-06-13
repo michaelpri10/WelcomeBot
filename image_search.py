@@ -8,7 +8,9 @@ def search_image(search_term):
     term_data = urllib2.urlopen("https://duckduckgo.com/?q="+search_term+"&format=json&pretty=1")
     info_obj = json.load(term_data)
     images = []
-    if "RelatedTopics" in info_obj:
+    if info_obj["Image"] != "":
+        images.append(info_obj["Image"])
+    elif "RelatedTopics" in info_obj:
         i = 0
         while i < len(info_obj["RelatedTopics"]):
             if "Icon" in info_obj["RelatedTopics"][i]:
@@ -18,7 +20,7 @@ def search_image(search_term):
                     images.append(info_obj["RelatedTopics"][i]["Icon"]["URL"])
             i += 1
 
-    if images == []:
+    if len(images) == 0:
         return False
     else:
         return random.choice(images)
