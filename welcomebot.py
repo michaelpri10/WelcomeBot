@@ -20,6 +20,7 @@ def main():
     setup_logging()
     # Run `. setp.sh` to set the below testing environment variables
 
+    global host_id
     def welcome_bot_host_options():
         print "Welcome Bot Host Site Options (select 1, 2, or 3)"
         print "  1. chat.stackexchange.com"
@@ -108,7 +109,7 @@ def on_command(message, client):
                 pass
             else:
                 def perform_search():
-                    search_term = "".join(message.content.split()[1:])
+                    search_term = "-".join(message.content.split()[1:])
                     image = image_search.search_image(search_term)
                     print image
                     if image is False:
@@ -120,6 +121,13 @@ def on_command(message, client):
                         room.send_message(image)
                 t = Thread(target=perform_search)
                 t.start()
+        elif message.content.startswith("!!_die"):
+            if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (messge.user.id == 4087357 and host_id == 'stackoverflow.com'):
+                room.send_message("I'm dead :(")
+                time.sleep(0.4)
+                client.logout()
+            else:
+                room.send_message("@"+message.user.name.replace(" ","")+" You are not authorized kill me!!! Muahaha!!!! Please ping @michaelpri if I am acting up")
 
 def setup_logging():
     logging.basicConfig(level=logging.INFO)

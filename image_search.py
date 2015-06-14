@@ -5,21 +5,13 @@ import json
 
 
 def search_image(search_term):
-    term_data = urllib2.urlopen("https://duckduckgo.com/?q="+search_term+"&format=json&pretty=1")
-    info_obj = json.load(term_data)
-    images = []
-    if info_obj["Image"] != "":
-        images.append(info_obj["Image"])
-    elif "RelatedTopics" in info_obj:
-        i = 0
-        while i < len(info_obj["RelatedTopics"]):
-            if "Icon" in info_obj["RelatedTopics"][i]:
-                if info_obj["RelatedTopics"][i]["Icon"]["URL"].endswith(".ico"):
-                    pass
-                else:
-                    images.append(info_obj["RelatedTopics"][i]["Icon"]["URL"])
-            i += 1
-
+    images_page = urllib2.urlopen("http://compfight.com/search/"+search_term+"/1-0-1-1")
+    parsing_page = BeautifulSoup(images_page)
+    image_parents = parsing_page.findAll("a", id=lambda x: x and x.startswith("photo_link_"))
+    image_tags = []
+    for i in image_parents:
+        image_tags.append(i.find("img"))
+    images = [i['src'] for i in image_tags]
     if len(images) == 0:
         return False
     else:
