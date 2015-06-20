@@ -103,7 +103,7 @@ def on_command(message, client):
     print "watchCalled"
     if isinstance(message, ChatExchange.chatexchange.events.MessagePosted):
         print "Message Posted"
-        if message.content.startswith("!!_image"):
+        if message.content.startswith("//image"):
             print "Is image request"
             if len(message.content.split()) == 1:
                 pass
@@ -121,8 +121,8 @@ def on_command(message, client):
                         room.send_message(image)
                 t = Thread(target=perform_search)
                 t.start()
-        elif message.content.startswith("!!_die"):
-            if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (messge.user.id == 4087357 and host_id == 'stackoverflow.com'):
+        elif message.content.startswith("//die"):
+            if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com'):
                 room.send_message("I'm dead :(")
                 time.sleep(0.4)
                 client.logout()
