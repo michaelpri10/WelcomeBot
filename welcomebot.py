@@ -13,6 +13,7 @@ import ChatExchange.chatexchange.events
 import ChatExchange.chatexchange.browser
 import who_to_welcome
 import image_search
+import random
 
 logger = logging.getLogger(__name__)
 
@@ -128,6 +129,16 @@ def on_command(message, client):
                 client.logout()
             else:
                 room.send_message("@"+message.user.name.replace(" ","")+" You are not authorized kill me!!! Muahaha!!!! Please ping @michaelpri if I am acting up")
+        elif message.content.startswith("//choose"):
+            print "Is choose request"
+            if len(message.content.split()) == 1:
+                pass
+            else:
+                if " or " in message.content:
+                    choices = message.content[8:].split(" or ")
+                    room.send_message("@"+message.user.name.replace(" ","")+" I choose "+random.choice(choices))
+                else:
+                    room.send_message("@"+message.user.name.replace(" ","")+" I'm not sure what your options are")
 
 def setup_logging():
     logging.basicConfig(level=logging.INFO)
