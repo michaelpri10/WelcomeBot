@@ -94,7 +94,7 @@ def main():
 
 def on_enter(event, client):
     if isinstance(event, ChatExchange.chatexchange.events.UserEntered):
-        if event.user.id == bot.id:
+        if event.user.id == bot.id or event.user.reputation < 20:
             pass
         else:
             if who_to_welcome.check_user(event.user.id, room_id, 'enter'):
