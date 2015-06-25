@@ -74,8 +74,7 @@ def main():
     global room
     room = client.get_room(room_id)
     room.join()
-    room.watch(on_command)
-    room.watch(on_enter)
+    room.watch(on_event)
 
     print "(You are now in room #%s on %s.)" % (room_id, host_id)
     room.send_message("I'm alive :)")
@@ -92,53 +91,57 @@ def main():
     client.logout()
 
 
-def on_enter(event, client):
+def on_event(event, client):
     if isinstance(event, ChatExchange.chatexchange.events.UserEntered):
-        if event.user.id == bot.id or event.user.reputation < 20:
-            pass
-        else:
-            if who_to_welcome.check_user(event.user.id, room_id, 'enter'):
-                room.send_message("@"+event.user.name.replace(" ","")+" "+welcome_message)
+        on_enter(event)
+    elif isinstance(event, ChatExchange.chatexchange.events.MessagePosted):
+        on_command(event, client)
+
+def on_enter(event):
+    if event.user.id == bot.id or event.user.reputation < 20:
+        pass
+    else:
+        if who_to_welcome.check_user(event.user.id, room_id, 'enter'):
+            room.send_message("@"+event.user.name.replace(" ","")+" "+welcome_message)
 
 def on_command(message, client):
     print "watchCalled"
-    if isinstance(message, ChatExchange.chatexchange.events.MessagePosted):
-        print "Message Posted"
-        if message.content.startswith("//image"):
-            print "Is image request"
-            if len(message.content.split()) == 1:
-                pass
-            else:
-                def perform_search():
-                    search_term = "-".join(message.content.split()[1:])
-                    image = image_search.search_image(search_term)
-                    print image
-                    if image is False:
-                        print "No Image"
-                        room.send_message("@"+message.user.name.replace(" ","")+" No image was found for "+search_term)
-                    else:
-                        print message.content
-                        print search_term
-                        room.send_message(image)
-                t = Thread(target=perform_search)
-                t.start()
-        elif message.content.startswith("//die"):
-            if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com'):
-                room.send_message("I'm dead :(")
-                time.sleep(0.4)
-                client.logout()
-            else:
-                room.send_message("@"+message.user.name.replace(" ","")+" You are not authorized kill me!!! Muahaha!!!! Please ping @michaelpri if I am acting up")
-        elif message.content.startswith("//choose"):
-            print "Is choose request"
-            if len(message.content.split()) == 1:
-                pass
-            else:
-                if " or " in message.content:
-                    choices = message.content[8:].split(" or ")
-                    room.send_message("@"+message.user.name.replace(" ","")+" I choose "+random.choice(choices))
+    print "Message Posted"
+    if message.content.startswith("//image"):
+        print "Is image request"
+        if len(message.content.split()) == 1:
+            pass
+        else:
+            def perform_search():
+                search_term = "-".join(message.content.split()[1:])
+                image = image_search.search_image(search_term)
+                print image
+                if image is False:
+                    print "No Image"
+                    room.send_message("@"+message.user.name.replace(" ","")+" No image was found for "+search_term)
                 else:
-                    room.send_message("@"+message.user.name.replace(" ","")+" I'm not sure what your options are")
+                    print message.content
+                    print search_term
+                    room.send_message(image)
+            t = Thread(target=perform_search)
+            t.start()
+    elif message.content.startswith("//die"):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com'):
+            room.send_message("I'm dead :(")
+            time.sleep(0.4)
+            client.logout()
+        else:
+            room.send_message("@"+message.user.name.replace(" ","")+" You are not authorized kill me!!! Muahaha!!!! Please ping @michaelpri if I am acting up")
+    elif message.content.startswith("//choose"):
+        print "Is choose request"
+        if len(message.content.split()) == 1:
+            pass
+        else:
+            if " or " in message.content:
+                choices = message.content[8:].split(" or ")
+                room.send_message("@"+message.user.name.replace(" ","")+" I choose "+random.choice(choices))
+            else:
+                room.send_message("@"+message.user.name.replace(" ","")+" I'm not sure what your options are")
 
 def setup_logging():
     logging.basicConfig(level=logging.INFO)
