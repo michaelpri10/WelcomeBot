@@ -46,7 +46,7 @@ def main():
 
     print "What is the room's ID?"
     room_id_choice = raw_input()
-    while room_id_choice.isdigit() == False:
+    while not room_id_choice.isdigit():
         print "Invalid Input, must be a number"
         room_id_choice = raw_input()
     global room_id
