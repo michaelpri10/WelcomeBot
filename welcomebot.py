@@ -15,11 +15,13 @@ import random
 
 logger = logging.getLogger(__name__)
 
+
 def main():
     setup_logging()
     # Run `. setp.sh` to set the below testing environment variables
 
     global host_id
+
     def welcome_bot_host_options():
         print "Welcome Bot Host Site Options (select 1, 2, or 3)"
         print "  1. chat.stackexchange.com"
@@ -95,12 +97,14 @@ def on_event(event, client):
     elif isinstance(event, ChatExchange.chatexchange.events.MessagePosted):
         on_command(event, client)
 
+
 def on_enter(event):
     if event.user.id == bot.id or event.user.reputation < 20:
         pass
     else:
         if who_to_welcome.check_user(event.user.id, room_id, 'enter'):
             room.send_message("@"+event.user.name.replace(" ","")+" "+welcome_message)
+
 
 def on_command(message, client):
     print "watchCalled"
@@ -140,6 +144,7 @@ def on_command(message, client):
                 room.send_message("@"+message.user.name.replace(" ","")+" I choose "+random.choice(choices))
             else:
                 room.send_message("@"+message.user.name.replace(" ","")+" I'm not sure what your options are")
+
 
 def setup_logging():
     logging.basicConfig(level=logging.INFO)
