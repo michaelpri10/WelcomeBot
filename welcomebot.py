@@ -103,7 +103,7 @@ def on_enter(event):
         pass
     else:
         if who_to_welcome.check_user(event.user.id, room_id, 'enter'):
-            room.send_message("@"+event.user.name.replace(" ","")+" "+welcome_message)
+            room.send_message("@" + event.user.name.replace(" ", "")+" "+ welcome_message)
 
 
 def on_command(message, client):
@@ -120,7 +120,7 @@ def on_command(message, client):
                 print image
                 if image is False:
                     print "No Image"
-                    room.send_message("@"+message.user.name.replace(" ","")+" No image was found for "+search_term)
+                    room.send_message("@"+message.user.name.replace(" ", "") + " No image was found for " + search_term)
                 else:
                     print message.content
                     print search_term
@@ -133,7 +133,7 @@ def on_command(message, client):
             time.sleep(0.4)
             client.logout()
         else:
-            room.send_message("@"+message.user.name.replace(" ","")+" You are not authorized kill me!!! Muahaha!!!! Please ping @michaelpri if I am acting up")
+            room.send_message("@" + message.user.name.replace(" ", "") + " You are not authorized kill me!!! Muahaha!!!! Please ping @michaelpri if I am acting up")
     elif message.content.startswith("//choose"):
         print "Is choose request"
         if len(message.content.split()) == 1:
@@ -141,9 +141,9 @@ def on_command(message, client):
         else:
             if " or " in message.content:
                 choices = message.content[8:].split(" or ")
-                room.send_message("@"+message.user.name.replace(" ","")+" I choose "+random.choice(choices))
+                room.send_message("@" + message.user.name.replace(" ", "") + " I choose "+random.choice(choices))
             else:
-                room.send_message("@"+message.user.name.replace(" ","")+" I'm not sure what your options are")
+                room.send_message("@" + message.user.name.replace(" ", "") + " I'm not sure what your options are")
 
 
 def setup_logging():
