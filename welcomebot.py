@@ -3,8 +3,6 @@ import getpass
 import logging
 import logging.handlers
 import os
-import random
-import sys
 import time
 from threading import Thread
 
@@ -17,11 +15,13 @@ import random
 
 logger = logging.getLogger(__name__)
 
+
 def main():
     setup_logging()
     # Run `. setp.sh` to set the below testing environment variables
 
     global host_id
+
     def welcome_bot_host_options():
         print "Welcome Bot Host Site Options (select 1, 2, or 3)"
         print "  1. chat.stackexchange.com"
@@ -46,7 +46,7 @@ def main():
 
     print "What is the room's ID?"
     room_id_choice = raw_input()
-    while room_id_choice.isdigit() == False:
+    while not room_id_choice.isdigit():
         print "Invalid Input, must be a number"
         room_id_choice = raw_input()
     global room_id
@@ -97,12 +97,14 @@ def on_event(event, client):
     elif isinstance(event, ChatExchange.chatexchange.events.MessagePosted):
         on_command(event, client)
 
+
 def on_enter(event):
     if event.user.id == bot.id or event.user.reputation < 20:
         pass
     else:
         if who_to_welcome.check_user(event.user.id, room_id, 'enter'):
-            room.send_message("@"+event.user.name.replace(" ","")+" "+welcome_message)
+            room.send_message("@" + event.user.name.replace(" ", "")+" "+ welcome_message)
+
 
 def on_command(message, client):
     print "watchCalled"
@@ -118,7 +120,7 @@ def on_command(message, client):
                 print image
                 if image is False:
                     print "No Image"
-                    room.send_message("@"+message.user.name.replace(" ","")+" No image was found for "+search_term)
+                    room.send_message("@"+message.user.name.replace(" ", "") + " No image was found for " + search_term)
                 else:
                     print message.content
                     print search_term
@@ -131,7 +133,7 @@ def on_command(message, client):
             time.sleep(0.4)
             client.logout()
         else:
-            room.send_message("@"+message.user.name.replace(" ","")+" You are not authorized kill me!!! Muahaha!!!! Please ping @michaelpri if I am acting up")
+            room.send_message("@" + message.user.name.replace(" ", "") + " You are not authorized kill me!!! Muahaha!!!! Please ping @michaelpri if I am acting up")
     elif message.content.startswith("//choose"):
         print "Is choose request"
         if len(message.content.split()) == 1:
@@ -139,7 +141,7 @@ def on_command(message, client):
         else:
             if " or " in message.content:
                 choices = message.content[8:].split(" or ")
-                room.send_message("@"+message.user.name.replace(" ","")+" I choose "+random.choice(choices))
+                room.send_message("@" + message.user.name.replace(" ", "") + " I choose "+random.choice(choices))
             else:
                 room.send_message("@"+message.user.name.replace(" ","")+" I'm not sure what your options are")
     elif message.content.startswith("//help"):
@@ -166,4 +168,4 @@ def setup_logging():
     wrapper_logger.addHandler(wrapper_handler)
 
 if __name__ == '__main__':
-    main(*sys.argv[1:])
+    main()
