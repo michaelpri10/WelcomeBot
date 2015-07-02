@@ -126,7 +126,7 @@ def on_command(message, client):
             t = Thread(target=perform_search)
             t.start()
     elif message.content.startswith("//die"):
-        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com'):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id in [4087357, 3285730, 2619912] and host_id == 'stackoverflow.com'):
             room.send_message("I'm dead :(")
             time.sleep(0.4)
             client.logout()
@@ -142,6 +142,12 @@ def on_command(message, client):
                 room.send_message("@"+message.user.name.replace(" ","")+" I choose "+random.choice(choices))
             else:
                 room.send_message("@"+message.user.name.replace(" ","")+" I'm not sure what your options are")
+    elif message.content.startswith("//help"):
+        print "Is help request"
+        room.send_message("""My Commands
+                             //image [image search term] - searches for and posts images of or relating to the image search term
+                             //choose [choice] or [choice]... - makes decisions for you so you don't have to. Can accept more than two choices as long as they are separated by 'or'
+                          """)
 
 def setup_logging():
     logging.basicConfig(level=logging.INFO)
