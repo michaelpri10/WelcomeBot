@@ -11,6 +11,7 @@ import ChatExchange.chatexchange.events
 import ChatExchange.chatexchange.browser
 import who_to_welcome
 import image_search
+import weather_search
 import random
 
 logger = logging.getLogger(__name__)
@@ -112,6 +113,7 @@ def on_command(message, client):
     if message.content.startswith("//image"):
         print "Is image request"
         if len(message.content.split()) == 1:
+            room.send_message("No search term given")
             pass
         else:
             def perform_search():
@@ -129,14 +131,15 @@ def on_command(message, client):
             t.start()
     elif message.content.startswith("//die"):
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id in [4087357, 3285730, 2619912] and host_id == 'stackoverflow.com'):
-            room.send_message("I'm dead :(")
+            room.send_message("I'm dead :( cc: @michaelpri")
             time.sleep(0.4)
             client.logout()
         else:
-            room.send_message("@" + message.user.name.replace(" ", "") + " You are not authorized kill me!!! Muahaha!!!! Please ping @michaelpri if I am acting up")
+            room.send_message("@" + message.user.name.replace(" ", "") + " You are not authorized kill me!!! Muahaha!!!! Please ping `@michaelpri` if I am acting up")
     elif message.content.startswith("//choose"):
         print "Is choose request"
         if len(message.content.split()) == 1:
+            room.send_message("No choices given")
             pass
         else:
             if " or " in message.content:
@@ -147,9 +150,31 @@ def on_command(message, client):
     elif message.content.startswith("//help"):
         print "Is help request"
         room.send_message("""My Commands
-                             //image [image search term] - searches for and posts images of or relating to the image search term
-                             //choose [choice] or [choice]... - makes decisions for you so you don't have to. Can accept more than two choices as long as they are separated by 'or'
+                             //image (image search term) - searches for and posts images of or relating to the image search term
+                             //choose (choice) or (choice) [or choice...] - makes decisions for you so you don't have to. Can accept more than two choices as long as they are separated by ' or '
+                             //weather (city)[, country/state] - gets the weather for whatever location you would like
                           """)
+    elif (message.content.startswith("//weather")):
+        print "Is weather request"
+        if len(message.content.split()) == 1:
+            room.send_message("City and country/state not given")
+            pass
+        else:
+            city_and_country = [i.replace(" ", "%20") for i in message.content[10:].split(",")]
+            city = city_and_country[0]
+            if len(city_and_country) == 2:
+                country_state = city_and_country[1]
+                print city, country_state
+                try:
+                    room.send_message(weather_search.weather_search(city, country_state))
+                except:
+                    room.send_message("Couldn't find weather info for "+ city + ", " + country_state)
+            elif len(city_and_country) == 1:
+                try:
+                    room.send_message(weather_search.weather_search(city, ""))
+                except:
+                    room.send_message("Couldn't find weather info for " + city)
+
 
 def setup_logging():
     logging.basicConfig(level=logging.INFO)
