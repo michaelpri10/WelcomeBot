@@ -112,7 +112,7 @@ def main():
             time.sleep(0.4)
             break
         else:
-            pass
+            room.send_message(message)
 
     os._exit(6)
 
@@ -138,7 +138,7 @@ def on_command(message, client):
     if message.content.startswith("//image"):
         print "Is image request"
         if len(message.content.split()) == 1:
-            room.send_message("No search term given")
+            message.message.reply("No search term given")
         else:
             def perform_search():
                 search_term = "-".join(message.content.split()[1:])
@@ -146,27 +146,27 @@ def on_command(message, client):
                 print image
                 if image is False:
                     print "No Image"
-                    room.send_message("@"+message.user.name.replace(" ", "") + " No image was found for " + search_term)
+                    message.message.reply("No image was found for " + search_term)
                 else:
                     print message.content
                     print search_term
-                    room.send_message(image)
+                    message.message.reply(image)
             t = Thread(target=perform_search)
             t.start()
     elif message.content.startswith("//die"):
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id in [4087357, 3285730, 2619912] and host_id == 'stackoverflow.com'):
-            room.send_message("I'm dead :(")
+            message.message.reply("I'm dead :(")
             time.sleep(0.4)
             os._exit(6)
         else:
-            room.send_message("@" + message.user.name.replace(" ", "") + " You are not authorized kill me!!! Muahaha!!!! Please ping `@michaelpri` if I am acting up")
+            message.message.reply("You are not authorized kill me!!! Muahaha!!!! Please ping `@michaelpri` if I am acting up")
     elif message.content.startswith("//reset"):
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id in [4087357, 3285730, 2619912] and host_id == 'stackoverflow.com'):
-            room.send_message("Resetting...")
+            message.message.reply("Resetting...")
             time.sleep(0.4)
             os._exit(5)
         else:
-            room.send_message("@" + message.user.name.replace(" ", "") + " You are not authorized reset me. Please ping `@michaelpri` if I am acting need resetting")
+            message.message.reply("You are not authorized reset me. Please ping `@michaelpri` if I am acting need resetting")
     elif message.content.startswith("//pull"):
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id in [4087357, 3285730, 2619912] and host_id == 'stackoverflow.com'):
             r = requests.get('https://api.github.com/repos/michaelpri10/WelcomeBot/git/refs/heads/master')
@@ -179,33 +179,33 @@ def on_command(message, client):
             if "success" in states:
                 os._exit(3)
             elif "error" in states or "failure" in states:
-                room.send_message("@" + message.user.name.replace(" ", "") + " Failed :( Please check your commit.")
+                message.message.reply("Failed :( Please check your commit.")
             elif "pending" in states or not states:
-                room.send_message("@" + message.user.name.replace(" ", "") + " Still pending. Try again in a little")
+                message.message.reply("Still pending. Try again in a little")
 
 
     elif message.content.startswith("//choose"):
         print "Is choose request"
         if len(message.content.split()) == 1:
-            room.send_message("No choices given")
+            message.message.reply("No choices given")
         else:
             if " or " in message.content:
                 choices = message.content[8:].split(" or ")
-                room.send_message("@" + message.user.name.replace(" ", "") + " I choose "+random.choice(choices))
+                message.message.reply("I choose "+random.choice(choices))
             else:
-                room.send_message("@"+message.user.name.replace(" ","")+" I'm not sure what your options are")
+                message.message.reply("I'm not sure what your options are")
     elif message.content.startswith("//help"):
         print "Is help request"
-        room.send_message("""My Commands
-                             - //image (image search term) - searches for and posts images of or relating to the image search term
-                             - //choose (choice) or (choice) [or choice...] - makes decisions for you so you don't have to. Can accept more than two choices as long as they are separated by ' or '
-                             - //weather (city)[, country/state] - gets the weather for whatever location you would like
-                             - //youtube (youtube search term) - search Youtube for and returns a video of or relating to your search term
+        message.message.reply("""My Commands
+                             - //image (image search term)
+                             - //choose (choice) or (choice) [or choice...]
+                             - //weather (city)[, country/state]
+                             - //youtube (youtube search term)
                           """)
     elif message.content.startswith("//weather"):
         print "Is weather request"
         if len(message.content.split()) == 1:
-            room.send_message("City and country/state not given")
+            message.message.reply("City and country/state not given")
         else:
             city_and_country = [i.replace(" ", "%20") for i in message.content[10:].split(",")]
             city = city_and_country[0]
@@ -213,18 +213,18 @@ def on_command(message, client):
                 country_state = city_and_country[1]
                 print city, country_state
                 try:
-                    room.send_message(weather_search.weather_search(city, country_state))
+                    message.message.reply(weather_search.weather_search(city, country_state))
                 except:
-                    room.send_message("Couldn't find weather info for " + message.content)
+                    message.message.reply("Couldn't find weather info for " + message.content)
             elif len(city_and_country) == 1:
                 try:
-                    room.send_message(weather_search.weather_search(city, ""))
+                    message.message.reply(weather_search.weather_search(city, ""))
                 except:
-                    room.send_message("Couldn't find weather info for " + message.content)
+                    message.message.reply("Couldn't find weather info for " + message.content)
     elif message.content.startswith("//youtube"):
         print "Is youtube request"
         if len(message.content.split()) == 1:
-            room.send_message("No search term given")
+            message.message.reply("No search term given")
         else:
             def perform_youtube_search():
                 search_term = "+".join(message.content.split()[1:])
@@ -232,11 +232,11 @@ def on_command(message, client):
                 print video
                 if video is False:
                     print "No Image"
-                    room.send_message("@"+message.user.name.replace(" ", "") + " No video was found for " + search_term)
+                    message.message.reply("No video was found for " + search_term)
                 else:
                     print message.content
                     print search_term
-                    room.send_message(video)
+                    message.message.reply(video)
             v = Thread(target=perform_youtube_search)
             v.start()
 
