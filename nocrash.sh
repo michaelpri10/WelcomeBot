@@ -1,8 +1,6 @@
 #!/bin/bash
-"""
-Mostly copied from the nocrash.sh (https://github.com/Charcoal-SE/SmokeDetector/blob/master/nocrash.sh)
-on Smoke Detector made by Charcoal (https://github.com/Charcoal-SE/SmokeDetector)
-"""
+#Mostly copied from the nocrash.sh (https://github.com/Charcoal-SE/SmokeDetector/blob/master/nocrash.sh)
+#on Smoke Detector made by Charcoal (https://github.com/Charcoal-SE/SmokeDetector)
 read -p "Username: " u
 export ChatExchangeU=$u
 export CEU="h"
