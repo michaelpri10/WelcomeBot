@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 from excepthook import uncaught_exception, install_thread_excepthook
 import sys
 sys.excepthook = uncaught_exception
@@ -198,9 +197,10 @@ def on_command(message, client):
     elif message.content.startswith("//help"):
         print "Is help request"
         room.send_message("""My Commands
-                             //image (image search term) - searches for and posts images of or relating to the image search term
-                             //choose (choice) or (choice) [or choice...] - makes decisions for you so you don't have to. Can accept more than two choices as long as they are separated by ' or '
-                             //weather (city)[, country/state] - gets the weather for whatever location you would like
+                             - //image (image search term) - searches for and posts images of or relating to the image search term
+                             - //choose (choice) or (choice) [or choice...] - makes decisions for you so you don't have to. Can accept more than two choices as long as they are separated by ' or '
+                             - //weather (city)[, country/state] - gets the weather for whatever location you would like
+                             - //youtube (youtube search term) - search Youtube for and returns a video of or relating to your search term
                           """)
     elif message.content.startswith("//weather"):
         print "Is weather request"
