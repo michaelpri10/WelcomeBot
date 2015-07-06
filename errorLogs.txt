@@ -73,3 +73,78 @@ NameError: global name 'requests' is not defined
     r = requests.get('https://api.github.com/repos/michaelpri10/WelcomeBot/git/refs/heads/master')
 
 
+LoginError: failed to get `usr` cookie from Stack Exchange OpenID
+2015-07-06 17:46:39.601968 UTC
+  File "welcomebot.py", line 245, in <module>
+    main()
+
+  File "welcomebot.py", line 94, in main
+    client.login(email, password)
+
+  File "/home/mrp/Documents/WelcomeBot/ChatExchange/chatexchange/client.py", line 135, in login
+    self._br.login_se_openid(email, password)
+
+  File "/home/mrp/Documents/WelcomeBot/ChatExchange/chatexchange/browser.py", line 147, in login_se_openid
+    "failed to get `usr` cookie from Stack Exchange OpenID")
+
+
+LoginError: failed to get `usr` cookie from Stack Exchange OpenID
+2015-07-06 17:46:45.297146 UTC
+  File "welcomebot.py", line 245, in <module>
+    main()
+
+  File "welcomebot.py", line 94, in main
+    client.login(email, password)
+
+  File "/home/mrp/Documents/WelcomeBot/ChatExchange/chatexchange/client.py", line 135, in login
+    self._br.login_se_openid(email, password)
+
+  File "/home/mrp/Documents/WelcomeBot/ChatExchange/chatexchange/browser.py", line 147, in login_se_openid
+    "failed to get `usr` cookie from Stack Exchange OpenID")
+
+
+LoginError: failed to get `usr` cookie from Stack Exchange OpenID
+2015-07-06 17:46:51.287197 UTC
+  File "welcomebot.py", line 245, in <module>
+    main()
+
+  File "welcomebot.py", line 94, in main
+    client.login(email, password)
+
+  File "/home/mrp/Documents/WelcomeBot/ChatExchange/chatexchange/client.py", line 135, in login
+    self._br.login_se_openid(email, password)
+
+  File "/home/mrp/Documents/WelcomeBot/ChatExchange/chatexchange/browser.py", line 147, in login_se_openid
+    "failed to get `usr` cookie from Stack Exchange OpenID")
+
+
+LoginError: failed to get `usr` cookie from Stack Exchange OpenID
+2015-07-06 17:46:57.079827 UTC
+  File "welcomebot.py", line 245, in <module>
+    main()
+
+  File "welcomebot.py", line 94, in main
+    client.login(email, password)
+
+  File "/home/mrp/Documents/WelcomeBot/ChatExchange/chatexchange/client.py", line 135, in login
+    self._br.login_se_openid(email, password)
+
+  File "/home/mrp/Documents/WelcomeBot/ChatExchange/chatexchange/browser.py", line 147, in login_se_openid
+    "failed to get `usr` cookie from Stack Exchange OpenID")
+
+
+LoginError: failed to get `usr` cookie from Stack Exchange OpenID
+2015-07-06 17:47:02.914961 UTC
+  File "welcomebot.py", line 245, in <module>
+    main()
+
+  File "welcomebot.py", line 94, in main
+    client.login(email, password)
+
+  File "/home/mrp/Documents/WelcomeBot/ChatExchange/chatexchange/client.py", line 135, in login
+    self._br.login_se_openid(email, password)
+
+  File "/home/mrp/Documents/WelcomeBot/ChatExchange/chatexchange/browser.py", line 147, in login_se_openid
+    "failed to get `usr` cookie from Stack Exchange OpenID")
+
+
