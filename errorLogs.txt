@@ -1,0 +1,75 @@
+NameError: global name 'requests' is not defined
+2015-07-06 17:02:32.647109 UTC
+  File "/home/michaelpri/documents/programming/mrp/WelcomeBot/excepthook.py", line 50, in run_with_except_hook
+    run_old(*args, **kw)
+
+  File "/usr/lib/python2.7/threading.py", line 763, in run
+    self.__target(*self.__args, **self.__kwargs)
+
+  File "/home/michaelpri/documents/programming/mrp/WelcomeBot/ChatExchange/chatexchange/browser.py", line 708, in _runner
+    self.on_activity(activity)
+
+  File "/home/michaelpri/documents/programming/mrp/WelcomeBot/ChatExchange/chatexchange/rooms.py", line 74, in on_activity
+    event_callback(event, self._client)
+
+  File "welcomebot.py", line 105, in on_event
+    on_command(event, client)
+
+  File "welcomebot.py", line 154, in on_command
+    r = requests.get('https://api.github.com/repos/michaelpri10/WelcomeBot/git/refs/heads/master')
+
+
+ConnectionError: ('Connection aborted.', gaierror(-2, 'Name or service not known'))
+2015-07-06 17:08:50.372104 UTC
+  File "/home/michaelpri/documents/programming/mrp/WelcomeBot/excepthook.py", line 50, in run_with_except_hook
+    run_old(*args, **kw)
+
+  File "/usr/lib/python2.7/threading.py", line 763, in run
+    self.__target(*self.__args, **self.__kwargs)
+
+  File "/home/michaelpri/documents/programming/mrp/WelcomeBot/ChatExchange/chatexchange/browser.py", line 699, in _runner
+    'events', {'r' + self.room_id: last_event_time}).json()
+
+  File "/home/michaelpri/documents/programming/mrp/WelcomeBot/ChatExchange/chatexchange/browser.py", line 126, in post_fkeyed
+    return self.post(url, data, headers)
+
+  File "/home/michaelpri/documents/programming/mrp/WelcomeBot/ChatExchange/chatexchange/browser.py", line 106, in post
+    return self._request('post', url, data, headers, with_chat_root)
+
+  File "/home/michaelpri/documents/programming/mrp/WelcomeBot/ChatExchange/chatexchange/browser.py", line 76, in _request
+    url, data=data, headers=headers, timeout=self.request_timeout)
+
+  File "/usr/local/lib/python2.7/dist-packages/requests/sessions.py", line 508, in post
+    return self.request('POST', url, data=data, json=json, **kwargs)
+
+  File "/usr/local/lib/python2.7/dist-packages/requests/sessions.py", line 465, in request
+    resp = self.send(prep, **send_kwargs)
+
+  File "/usr/local/lib/python2.7/dist-packages/requests/sessions.py", line 573, in send
+    r = adapter.send(request, **kwargs)
+
+  File "/usr/local/lib/python2.7/dist-packages/requests/adapters.py", line 415, in send
+    raise ConnectionError(err, request=request)
+
+
+NameError: global name 'requests' is not defined
+2015-07-06 17:14:34.032145 UTC
+  File "/home/michaelpri/documents/programming/mrp/WelcomeBot/excepthook.py", line 50, in run_with_except_hook
+    run_old(*args, **kw)
+
+  File "/usr/lib/python2.7/threading.py", line 763, in run
+    self.__target(*self.__args, **self.__kwargs)
+
+  File "/home/michaelpri/documents/programming/mrp/WelcomeBot/ChatExchange/chatexchange/browser.py", line 708, in _runner
+    self.on_activity(activity)
+
+  File "/home/michaelpri/documents/programming/mrp/WelcomeBot/ChatExchange/chatexchange/rooms.py", line 74, in on_activity
+    event_callback(event, self._client)
+
+  File "welcomebot.py", line 105, in on_event
+    on_command(event, client)
+
+  File "welcomebot.py", line 154, in on_command
+    r = requests.get('https://api.github.com/repos/michaelpri10/WelcomeBot/git/refs/heads/master')
+
+

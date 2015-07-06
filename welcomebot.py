@@ -1,9 +1,16 @@
 #!/usr/bin/env python
+
+from excepthook import uncaught_exception, install_thread_excepthook
+import sys
+sys.excepthook = uncaught_exception
+install_thread_excepthook()
+
 import getpass
 import logging
 import logging.handlers
 import os
 import time
+import requests
 from threading import Thread
 
 import ChatExchange.chatexchange.client
@@ -22,40 +29,57 @@ def main():
     # Run `. setp.sh` to set the below testing environment variables
 
     global host_id
-
     def welcome_bot_host_options():
         print "Welcome Bot Host Site Options (select 1, 2, or 3)"
         print "  1. chat.stackexchange.com"
         print "  2. chat.meta.stackexchange.com"
         print "  3. chat.stackoverflow.com"
         print "What will be your Welcome Bot's host site?"
-    welcome_bot_host_options()
-    host_id_choice = raw_input()
-    while host_id_choice not in ['1','2','3']:
-        print "Invalid Choice"
+    if 'HostSite' in os.environ:
+        host_id_choice = os.environ['HostSite']
+        if host_id_choice == '1':
+            print "You have chosen chat.stackexchange.com as your Welcome Bot's host site."
+            host_id = 'stackexchange.com'
+        elif host_id_choice == '2':
+            print "You have chosen meta.chat.stackexchange.com as your Welcome Bot's host site."
+            host_id = 'meta.stackexchange.com'
+        elif host_id_choice == '3':
+            print "You have chosen chat.stackoverflow.com as your Welcome Bot's host site."
+            host_id = 'stackoverflow.com'
+    else:
         welcome_bot_host_options()
         host_id_choice = raw_input()
-    if host_id_choice == '1':
-        print "You have chosen chat.stackexchange.com as your Welcome Bot's host site."
-        host_id = 'stackexchange.com'
-    elif host_id_choice == '2':
-        print "You have chosen meta.chat.stackexchange.com as your Welcome Bot's host site."
-        host_id = 'meta.stackexchange.com'
-    elif host_id_choice == '3':
-        print "You have chosen chat.stackoverflow.com as your Welcome Bot's host site."
-        host_id = 'stackoverflow.com'
+        while host_id_choice not in ['1','2','3']:
+            print "Invalid Choice"
+            welcome_bot_host_options()
+            host_id_choice = raw_input()
+        if host_id_choice == '1':
+            print "You have chosen chat.stackexchange.com as your Welcome Bot's host site."
+            host_id = 'stackexchange.com'
+        elif host_id_choice == '2':
+            print "You have chosen meta.chat.stackexchange.com as your Welcome Bot's host site."
+            host_id = 'meta.stackexchange.com'
+        elif host_id_choice == '3':
+            print "You have chosen chat.stackoverflow.com as your Welcome Bot's host site."
+            host_id = 'stackoverflow.com'
 
-    print "What is the room's ID?"
-    room_id_choice = raw_input()
-    while not room_id_choice.isdigit():
-        print "Invalid Input, must be a number"
-        room_id_choice = raw_input()
     global room_id
-    room_id = room_id_choice  # Charcoal Chatbot Sandbox
+    if 'RoomID' in os.environ:
+        room_id = os.environ['RoomID']
+    else:
+        print "What is the room's ID?"
+        room_id_choice = raw_input()
+        while not room_id_choice.isdigit():
+            print "Invalid Input, must be a number"
+            room_id_choice = raw_input()
+        room_id = room_id_choice  # Charcoal Chatbot Sandbox
 
-    print "What would you like the welcome message to be?"
     global welcome_message
-    welcome_message = raw_input()
+    if 'WelcomeMessage' in os.environ:
+        welcome_message = os.environ['WelcomeMessage']
+    else:
+        print "What would you like the welcome message to be?"
+        welcome_message = raw_input()
 
     if 'ChatExchangeU' in os.environ:
         email = os.environ['ChatExchangeU']
@@ -78,7 +102,8 @@ def main():
     room.watch(on_event)
 
     print "(You are now in room #%s on %s.)" % (room_id, host_id)
-    room.send_message("I'm alive :)")
+    if "first_start" in sys.argv:
+        room.send_message("I'm alive :)")
 
     while True:
         message = raw_input("<< ")
@@ -87,9 +112,9 @@ def main():
             time.sleep(0.4)
             break
         else:
-            room.send_message(message)
+            pass
 
-    client.logout()
+    os._exit(6)
 
 
 def on_event(event, client):
@@ -131,11 +156,35 @@ def on_command(message, client):
             t.start()
     elif message.content.startswith("//die"):
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id in [4087357, 3285730, 2619912] and host_id == 'stackoverflow.com'):
-            room.send_message("I'm dead :( cc: @michaelpri")
+            room.send_message("I'm dead :(")
             time.sleep(0.4)
-            client.logout()
+            os._exit(6)
         else:
             room.send_message("@" + message.user.name.replace(" ", "") + " You are not authorized kill me!!! Muahaha!!!! Please ping `@michaelpri` if I am acting up")
+    elif message.content.startswith("//reset"):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id in [4087357, 3285730, 2619912] and host_id == 'stackoverflow.com'):
+            room.send_message("Resetting...")
+            time.sleep(0.4)
+            os._exit(5)
+        else:
+            room.send_message("@" + message.user.name.replace(" ", "") + " You are not authorized reset me. Please ping `@michaelpri` if I am acting need resetting")
+    elif message.content.startswith("//pull"):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id in [4087357, 3285730, 2619912] and host_id == 'stackoverflow.com'):
+            r = requests.get('https://api.github.com/repos/michaelpri10/WelcomeBot/git/refs/heads/master')
+            latest_sha = r.json()["object"]["sha"]
+            r = requests.get('https://api.github.com/repos/michaelpri10/WelcomeBot/commits/' + latest_sha + '/statuses')
+            states = []
+            for status in r.json():
+                state = status["state"]
+                states.append(state)
+            if "success" in states:
+                os._exit(3)
+            elif "error" in states or "failure" in states:
+                room.send_message("@" + message.user.name.replace(" ", "") + " Failed :( Please check your commit.")
+            elif "pending" in states or not states:
+                room.send_message("@" + message.user.name.replace(" ", "") + " Still pending. Try again in a little")
+
+
     elif message.content.startswith("//choose"):
         print "Is choose request"
         if len(message.content.split()) == 1:
