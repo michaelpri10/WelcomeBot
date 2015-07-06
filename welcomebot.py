@@ -19,6 +19,7 @@ import ChatExchange.chatexchange.browser
 import who_to_welcome
 import image_search
 import weather_search
+import youtube_search
 import random
 
 logger = logging.getLogger(__name__)
@@ -139,7 +140,6 @@ def on_command(message, client):
         print "Is image request"
         if len(message.content.split()) == 1:
             room.send_message("No search term given")
-            pass
         else:
             def perform_search():
                 search_term = "-".join(message.content.split()[1:])
@@ -189,7 +189,6 @@ def on_command(message, client):
         print "Is choose request"
         if len(message.content.split()) == 1:
             room.send_message("No choices given")
-            pass
         else:
             if " or " in message.content:
                 choices = message.content[8:].split(" or ")
@@ -203,11 +202,10 @@ def on_command(message, client):
                              //choose (choice) or (choice) [or choice...] - makes decisions for you so you don't have to. Can accept more than two choices as long as they are separated by ' or '
                              //weather (city)[, country/state] - gets the weather for whatever location you would like
                           """)
-    elif (message.content.startswith("//weather")):
+    elif message.content.startswith("//weather"):
         print "Is weather request"
         if len(message.content.split()) == 1:
             room.send_message("City and country/state not given")
-            pass
         else:
             city_and_country = [i.replace(" ", "%20") for i in message.content[10:].split(",")]
             city = city_and_country[0]
@@ -217,12 +215,30 @@ def on_command(message, client):
                 try:
                     room.send_message(weather_search.weather_search(city, country_state))
                 except:
-                    room.send_message("Couldn't find weather info for "+ city + ", " + country_state)
+                    room.send_message("Couldn't find weather info for " + message.content)
             elif len(city_and_country) == 1:
                 try:
                     room.send_message(weather_search.weather_search(city, ""))
                 except:
-                    room.send_message("Couldn't find weather info for " + city)
+                    room.send_message("Couldn't find weather info for " + message.content)
+    elif message.content.startswith("//youtube"):
+        print "Is youtube request"
+        if len(message.content.split()) == 1:
+            room.send_message("No search term given")
+        else:
+            def perform_youtube_search():
+                search_term = "+".join(message.content.split()[1:])
+                video = youtube_search.youtube_search(search_term)
+                print video
+                if video is False:
+                    print "No Image"
+                    room.send_message("@"+message.user.name.replace(" ", "") + " No video was found for " + search_term)
+                else:
+                    print message.content
+                    print search_term
+                    room.send_message(video)
+            v = Thread(target=perform_youtube_search)
+            v.start()
 
 
 def setup_logging():
