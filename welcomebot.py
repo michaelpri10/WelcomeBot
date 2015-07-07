@@ -159,45 +159,35 @@ def on_command(message, client):
             time.sleep(0.4)
             os._exit(6)
         else:
-            message.message.reply("You are not authorized kill me!!! Muahaha!!!! Please ping `@michaelpri` if I am acting up")
+            message.message.reply("You are not authorized kill me!!! Muahaha!!!! Please contact `@michaelpri` if I am acting up")
     elif message.content.startswith("//reset"):
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (message.user.id in priv_users[room_id]):
             message.message.reply("Resetting...")
             time.sleep(0.4)
             os._exit(5)
         else:
-            message.message.reply("You are not authorized reset me. Please ping `@michaelpri` if I am acting need resetting")
+            message.message.reply("You are not authorized reset me. Please contatct `@michaelpri` if I need resetting")
     elif message.content.startswith("//pull"):
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (message.user.id in priv_users[room_id]):
-            r = requests.get('https://api.github.com/repos/michaelpri10/WelcomeBot/git/refs/heads/master')
-            latest_sha = r.json()["object"]["sha"]
-            r = requests.get('https://api.github.com/repos/michaelpri10/WelcomeBot/commits/' + latest_sha + '/statuses')
-            states = []
-            for status in r.json():
-                state = status["state"]
-                states.append(state)
-            if "success" in states:
-                os._exit(3)
-            elif "error" in states or "failure" in states:
-                message.message.reply("Failed :( Please check your commit.")
-            elif "pending" in states or not states:
-                message.message.reply("Still pending. Try again in a little")
+            os._exit(3)
+        else:
+            message.message.reply("You are not authorized to pull")
 
     elif message.content.startswith("//priv"):
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (message.user.id in priv_users[room_id]):
             if len(message.content.split()) == 2:
                 user_to_priv = message.content.split()[1]
-                if room_id not in priv_users:
-                    priv_users[room_id] = []
-                if user_to_priv in priv_users[room_id]:
+                if (host_id+room_id) not in priv_users:
+                    priv_users[host_id+room_id] = []
+                if user_to_priv in priv_users[host_id+room_id]:
                     message.message.reply("User already priveleged")
                 else:
-                    priv_users[room_id] += [user_to_priv]
-                    message.message.reply("User " + user_to_priv + " added to priveleged users :)")
+                    priv_users[host_id+room_id] += [user_to_priv]
+                    message.message.reply("User " + user_to_priv + " added to priveleged users for room " + room_id + " on chat." + host_id)
             else:
                 message.message.reply("Invalid privilege giving")
         else:
-            message.message.reply("You are not authorized to add priveleged users :(")
+            message.message.reply("You are not authorized to add priveleged users :( Please contact `@michaelpri` if someone needs priveleges")
 
     elif message.content.startswith("//choose"):
         print "Is choose request"
