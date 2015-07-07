@@ -12,6 +12,7 @@ A Stack Exchange chatbot written in Python that uses [ChatExchange](https://gith
  - `//choose (choice) or (choice) [or choice...]` - makes decisions for you so you don't have to. Can accept more than two choices as long as they are separated by `' or '`
  - `//weather (city)[, country/state]` - gets the weather for whatever location you would like
  - `//youtube (youtube search term)` - search [Youtube](https://www.youtube.com/) for and returns a video of or relating to your search term
+ - `//help` - tells you all of the commands listed above in case you forget
 - Commands for privileged users:
  - `//die` - kills the bot if it is acting up
  - `//reset` - resets the bot just in case
@@ -38,7 +39,7 @@ To run WelcomeBot, run `nocrash.sh` and log in with your Stack Exchange OpenID c
 
 ---
 
-#Why use WelcomeBot?
+##Why use WelcomeBot?
 
 - Make new users feel welcome in your chatroom
 - Have fun in your chatroom
@@ -46,7 +47,7 @@ To run WelcomeBot, run `nocrash.sh` and log in with your Stack Exchange OpenID c
 
 ---
 
-#Source Code
+##Source Code
 
 - WelcomeBot is an open source project and all of its code is available on [Github.](https://github.com/michaelpri10/WelcomeBot)
 
