@@ -154,27 +154,27 @@ def on_command(message, client):
             t = Thread(target=perform_search)
             t.start()
     elif message.content.startswith("//die"):
-        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (message.user.id in priv_users[room_id]):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (message.user.id in priv_users[host_id+room_id]):
             message.message.reply("I'm dead :(")
             time.sleep(0.4)
             os._exit(6)
         else:
             message.message.reply("You are not authorized kill me!!! Muahaha!!!! Please contact `@michaelpri` if I am acting up")
     elif message.content.startswith("//reset"):
-        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (message.user.id in priv_users[room_id]):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (message.user.id in priv_users[host_id+room_id]):
             message.message.reply("Resetting...")
             time.sleep(0.4)
             os._exit(5)
         else:
             message.message.reply("You are not authorized reset me. Please contatct `@michaelpri` if I need resetting")
     elif message.content.startswith("//pull"):
-        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (message.user.id in priv_users[room_id]):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (message.user.id in priv_users[host_id+room_id]):
             os._exit(3)
         else:
-            message.message.reply("You are not authorized to pull")
+            message.message.reply("You are not authorized to pull. Please contatct `@michaelpri` if I need some pulling")
 
     elif message.content.startswith("//priv"):
-        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (message.user.id in priv_users[room_id]):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (message.user.id in priv_users[host_id+room_id]):
             if len(message.content.split()) == 2:
                 user_to_priv = message.content.split()[1]
                 if (host_id+room_id) not in priv_users:
