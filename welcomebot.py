@@ -10,6 +10,8 @@ import logging.handlers
 import os
 import time
 import requests
+import shelve
+import random
 from threading import Thread
 
 import ChatExchange.chatexchange.client
@@ -19,7 +21,6 @@ import who_to_welcome
 import image_search
 import weather_search
 import youtube_search
-import random
 
 logger = logging.getLogger(__name__)
 
@@ -103,7 +104,7 @@ def main():
 
     print "(You are now in room #%s on %s.)" % (room_id, host_id)
     if "first_start" in sys.argv:
-        room.send_message("I'm alive :)")
+        room.send_message("I'm alive :) (running on commit: " + os.popen('git log --pretty=format:"%h" -n 1').read() + ")")
 
     while True:
         message = raw_input("<< ")
@@ -123,7 +124,6 @@ def on_event(event, client):
     elif isinstance(event, ChatExchange.chatexchange.events.MessagePosted):
         on_command(event, client)
 
-
 def on_enter(event):
     if event.user.id == bot.id or event.user.reputation < 20:
         pass
@@ -131,8 +131,8 @@ def on_enter(event):
         if who_to_welcome.check_user(event.user.id, room_id, 'enter'):
             room.send_message("@" + event.user.name.replace(" ", "")+" "+ welcome_message)
 
-
 def on_command(message, client):
+    priv_users = shelve.open("priveleged_users.txt")
     print "watchCalled"
     print "Message Posted"
     if message.content.startswith("//image"):
@@ -154,21 +154,21 @@ def on_command(message, client):
             t = Thread(target=perform_search)
             t.start()
     elif message.content.startswith("//die"):
-        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id in [4087357, 3285730, 2619912] and host_id == 'stackoverflow.com'):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (message.user.id in priv_users[room_id]):
             message.message.reply("I'm dead :(")
             time.sleep(0.4)
             os._exit(6)
         else:
             message.message.reply("You are not authorized kill me!!! Muahaha!!!! Please ping `@michaelpri` if I am acting up")
     elif message.content.startswith("//reset"):
-        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id in [4087357, 3285730, 2619912] and host_id == 'stackoverflow.com'):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (message.user.id in priv_users[room_id]):
             message.message.reply("Resetting...")
             time.sleep(0.4)
             os._exit(5)
         else:
             message.message.reply("You are not authorized reset me. Please ping `@michaelpri` if I am acting need resetting")
     elif message.content.startswith("//pull"):
-        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id in [4087357, 3285730, 2619912] and host_id == 'stackoverflow.com'):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (message.user.id in priv_users[room_id]):
             r = requests.get('https://api.github.com/repos/michaelpri10/WelcomeBot/git/refs/heads/master')
             latest_sha = r.json()["object"]["sha"]
             r = requests.get('https://api.github.com/repos/michaelpri10/WelcomeBot/commits/' + latest_sha + '/statuses')
@@ -183,6 +183,21 @@ def on_command(message, client):
             elif "pending" in states or not states:
                 message.message.reply("Still pending. Try again in a little")
 
+    elif message.content.startswith("//priv"):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (message.user.id in priv_users[room_id]):
+            if len(message.content.split()) == 2:
+                user_to_priv = message.content.split()[1]
+                if room_id not in priv_users:
+                    priv_users[room_id] = []
+                if user_to_priv in priv_users[room_id]:
+                    message.message.reply("User already priveleged")
+                else:
+                    priv_users[room_id] += [user_to_priv]
+                    message.message.reply("User " + user_to_priv + " added to priveleged users :)")
+            else:
+                message.message.reply("Invalid privilege giving")
+        else:
+            message.message.reply("You are not authorized to add priveleged users :(")
 
     elif message.content.startswith("//choose"):
         print "Is choose request"
@@ -239,6 +254,7 @@ def on_command(message, client):
                     message.message.reply(video)
             v = Thread(target=perform_youtube_search)
             v.start()
+    priv_users.close()
 
 
 def setup_logging():

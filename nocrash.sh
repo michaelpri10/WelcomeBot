@@ -8,6 +8,7 @@ stty -echo
 read -p "Password: " p
 export ChatExchangeP=$p
 stty echo
+echo
 echo "Welcome Bot Host Site Options (select 1, 2, or 3)"
 echo "  1. chat.stackexchange.com"
 echo "  2. chat.meta.stackexchange.com"
