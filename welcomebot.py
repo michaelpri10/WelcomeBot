@@ -125,11 +125,14 @@ def on_event(event, client):
         on_command(event, client)
 
 def on_enter(event):
-    if event.user.id == bot.id or event.user.reputation < 20:
+    if len(welcome_message) < 1:
         pass
     else:
-        if who_to_welcome.check_user(event.user.id, room_id, 'enter'):
-            room.send_message("@" + event.user.name.replace(" ", "")+" "+ welcome_message)
+        if event.user.id == bot.id or event.user.reputation < 20:
+            pass
+        else:
+            if who_to_welcome.check_user(event.user.id, room_id, 'enter'):
+                room.send_message("@" + event.user.name.replace(" ", "")+" "+ welcome_message)
 
 def on_command(message, client):
     priv_users = shelve.open("privileged_users.txt")
