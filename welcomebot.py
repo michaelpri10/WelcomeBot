@@ -144,7 +144,7 @@ def on_command(message, client):
             message.message.reply("No search term given")
         else:
             def perform_search():
-                search_term = "-".join(message.content.split()[1:])
+                search_term = "+".join(message.content.split()[1:])
                 image = image_search.search_image(search_term)
                 print image
                 if image is False:
