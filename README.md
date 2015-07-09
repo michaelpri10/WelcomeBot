@@ -1,6 +1,6 @@
 #WelcomeBot
 
-A Stack Exchange chatbot written in Python that uses [ChatExchange](https://github.com/Manishearth/ChatExchange). Many parts of this were modeled after [SmokeDetector](https://github.com/Charcoal-SE/SmokeDetector), another Stack Exchange chatbot. 
+A Stack Exchange chatbot written in Python that uses [ChatExchange](https://github.com/Manishearth/ChatExchange). Many parts of this were modeled after [SmokeDetector](https://github.com/Charcoal-SE/SmokeDetector), another Stack Exchange chatbot.
 
 ---
 
@@ -17,11 +17,13 @@ A Stack Exchange chatbot written in Python that uses [ChatExchange](https://gith
  - `//die` - kills the bot if it is acting up
  - `//reset` - resets the bot just in case
  - `//pull` - updates the bot with the latest commit on Github
- - `//priv [user id]` - gives a user the ability to use this command and the three commands listed above
+ - `//pause` - pauses the bot temporarily
+ - `//start` - resumes the bot when it is paused
+ - `//priv [user id]` - gives a user the ability to use this command and the five commands listed above
 
 ---
 
-To setup run: 
+To setup run:
 
     git clone https://github.com/michaelpri10/WelcomeBot.git
     cd WelcomeBot
@@ -30,7 +32,7 @@ To setup run:
     sudo pip install beautifulsoup4
     sudo pip install requests --upgrade
     sudo pip install websocket-client --upgrade
-    
+
 Or you can just run the `setup.sh` file.
 
 ---

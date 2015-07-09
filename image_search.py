@@ -27,7 +27,7 @@ def search_image(search_term):
         split_at = i["href"].find("imgurl=") + 7
         end_split = i["href"].find("&imgrefurl")
         result = i["href"][split_at:end_split]
-        if result.endswith(".jpg") or result.endswith(".png"):
+        if result.endswith((".jpg", ".gif", ".png")):
             try_open = True
             try:
                 single_image = urllib2.urlopen(result)
