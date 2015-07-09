@@ -9,6 +9,6 @@ def on_command(message, client):
     	if message.content.startswith("//image"):
     		...
     	...
-    el:
+    else:
     	if message.content.startswith("//start"):
     		dead = false
