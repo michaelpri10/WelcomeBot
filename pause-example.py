@@ -1,4 +1,4 @@
-#line 135 of welcomebot.py
+#line 136 of welcomebot.py
 dead = false
 def on_command(message, client):
     priv_users = shelve.open("privileged_users.txt")
