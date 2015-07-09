@@ -1,0 +1,2 @@
+class BotProperties:
+    paused = False
