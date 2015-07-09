@@ -43,14 +43,12 @@ To run WelcomeBot, run `nocrash.sh` and log in with your Stack Exchange OpenID c
 
 - Make new users feel welcome in your chatroom
 - Have fun in your chatroom
-- Annoy [Unihedron](http://stackexchange.com/users/4451090/unihedron)
 
 ---
 
 ##Source Code
 
 - WelcomeBot is an open source project and all of its code is available on [Github.](https://github.com/michaelpri10/WelcomeBot)
-
 - WelcomeBot is constantly being updated; luckily the `//pull` commands makes it easy to keep up
-
 - If you want to see WelcomeBot in action check out the [Teenage Programmers Chatroom](http://chat.stackoverflow.com/rooms/22091/teenage-programmers-chatroom), the current home for WelcomeBot
+- WelcomeBot was create michaelpri ([Github](https://github.com/michaelpri10), [Stack Exhange](http://stackexchange.com/users/4642421/michaelpri)), ProgramFOX ([Github](https://github.com/programfox), [Stack Exchange](http://stackexchange.com/users/3094403/programfox)), and Jacob Gray ([Github](https://github.com/Jacob-Gray), [Stack Exchange](http://stackexchange.com/users/3984803/jacob-gray))
