@@ -209,14 +209,11 @@ def on_command(message):
         if len(message.content.split()) == 1:
             message.message.reply("No choices given")
         else:
-            def perform_choose_request():
-                if " or " in message.content:
-                    choices = message.content[8:].split(" or ")
-                    message.message.reply("I choose "+random.choice(choices))
-                else:
-                    message.message.reply("I'm not sure what your options are")
-            c = Thread(target=perform_choose_request)
-            c.start()
+            if " or " in message.content:
+                choices = message.content[8:].split(" or ")
+                message.message.reply("I choose "+random.choice(choices))
+            else:
+                message.message.reply("I'm not sure what your options are")
 
     elif message.content.startswith("//help"):
         print "Is help request"
