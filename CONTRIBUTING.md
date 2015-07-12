@@ -13,7 +13,7 @@ Your code has to be conform to the PEP styling guidelines. An easy way to check 
 When running that command, Flake8 will look at the `tox.ini` file. This file contains rules to exclude the following warnings:
 
  - E501: Flake8 gives this error when a line is longer than 80 chars. Having a line that's longer than this is not a big problem for WelcomeBot.
- - F403: Flake8 gives this warning when it comes across a star import (`from <module> import *`), because it cannot check whether all imported methods are used.
+ - F403: Flake8 gives this warning when it comes across a star import (`from <module> import *`), because it cannot check for undefined names.
 
 `tox.ini` also excludes a few directories which shouldn't be checked.
 
