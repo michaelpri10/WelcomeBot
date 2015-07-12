@@ -192,7 +192,7 @@ def on_command(message):
         else:
             message.message.reply("You are not authorized reset me. Please contatct `@michaelpri` if I need resetting")
     elif message.content.startswith("//source"):
-        message.message.reply("My original source can be found on GitHub: https://github.com/michaelpri10/WelcomeBot")
+        message.message.reply("My source code can be found on [GitHub](https://github.com/michaelpri10/WelcomeBot)")
     elif message.content.startswith("//pull"):
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
             os._exit(3)
