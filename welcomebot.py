@@ -9,7 +9,6 @@ import logging
 import logging.handlers
 import os
 import time
-import requests
 import shelve
 import random
 from threading import Thread
@@ -25,11 +24,23 @@ from BotProperties import BotProperties
 
 logger = logging.getLogger(__name__)
 
+host_id = ''
+room_id = 0
+welcome_message = ""
+bot = None
+room = None
+
+
 def main():
+    global host_id
+    global room_id
+    global welcome_message
+    global bot
+    global room
+
     setup_logging()
     # Run `. setp.sh` to set the below testing environment variables
 
-    global host_id
     def welcome_bot_host_options():
         print "Welcome Bot Host Site Options (select 1, 2, or 3)"
         print "  1. chat.stackexchange.com"
@@ -50,7 +61,7 @@ def main():
     else:
         welcome_bot_host_options()
         host_id_choice = raw_input()
-        while host_id_choice not in ['1','2','3']:
+        while host_id_choice not in ['1', '2', '3']:
             print "Invalid Choice"
             welcome_bot_host_options()
             host_id_choice = raw_input()
@@ -64,7 +75,6 @@ def main():
             print "You have chosen chat.stackoverflow.com as your Welcome Bot's host site."
             host_id = 'stackoverflow.com'
 
-    global room_id
     if 'RoomID' in os.environ:
         room_id = os.environ['RoomID']
     else:
@@ -73,9 +83,8 @@ def main():
         while not room_id_choice.isdigit():
             print "Invalid Input, must be a number"
             room_id_choice = raw_input()
-        room_id = room_id_choice  # Charcoal Chatbot Sandbox
+        room_id = room_id_choice
 
-    global welcome_message
     if 'WelcomeMessage' in os.environ:
         welcome_message = os.environ['WelcomeMessage']
     else:
@@ -94,10 +103,8 @@ def main():
     client = ChatExchange.chatexchange.client.Client(host_id)
     client.login(email, password)
 
-    global bot
     bot = client.get_me()
 
-    global room
     room = client.get_room(room_id)
     room.join()
     room.watch(on_event)
@@ -127,10 +134,11 @@ def on_event(event, client):
     else:
         priv_users = shelve.open("privileged_users.txt")
         if isinstance(event, ChatExchange.chatexchange.events.MessagePosted) and event.content.startswith("//start"):
-            if (event.user.id == 121401 and host_id == 'stackexchange.com') or (event.user.id == 284141 and host_id == 'meta.stackexchange.com') or (event.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(event.user.id) in priv_users[host_id+room_id]):
+            if (event.user.id == 121401 and host_id == 'stackexchange.com') or (event.user.id == 284141 and host_id == 'meta.stackexchange.com') or (event.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(event.user.id) in priv_users[host_id + room_id]):
                 BotProperties.paused = False
                 event.message.reply("I am now resuming :)")
         priv_users.close()
+
 
 def on_enter(event):
     print "User Entered"
@@ -141,7 +149,8 @@ def on_enter(event):
             pass
         else:
             if who_to_welcome.check_user(event.user.id, room_id, 'enter'):
-                room.send_message("@" + event.user.name.replace(" ", "")+" "+ welcome_message)
+                room.send_message("@" + event.user.name.replace(" ", "") + " " + welcome_message)
+
 
 def on_command(message):
     priv_users = shelve.open("privileged_users.txt")
@@ -169,14 +178,14 @@ def on_command(message):
         message.message.reply("Indeed :D")
 
     elif message.content.startswith("//die"):
-        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id+room_id]):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
             message.message.reply("I'm dead :(")
             time.sleep(0.4)
             os._exit(6)
         else:
             message.message.reply("You are not authorized kill me!!! Muahaha!!!! Please contact `@michaelpri` if I am acting up")
     elif message.content.startswith("//reset"):
-        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id+room_id]):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
             message.message.reply("Resetting...")
             time.sleep(0.4)
             os._exit(5)
@@ -184,29 +193,26 @@ def on_command(message):
             message.message.reply("You are not authorized reset me. Please contatct `@michaelpri` if I need resetting")
     elif message.content.startswith("//source"):
         message.message.reply("My original source can be found on GitHub: https://github.com/michaelpri10/WelcomeBot")
-
     elif message.content.startswith("//pull"):
-        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id+room_id]):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
             os._exit(3)
         else:
             message.message.reply("You are not authorized to pull. Please contatct `@michaelpri` if I need some pulling")
-
     elif message.content.startswith("//priv"):
-        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id+room_id]):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
             if len(message.content.split()) == 2:
                 user_to_priv = message.content.split()[1]
-                if (host_id+room_id) not in priv_users:
-                    priv_users[host_id+room_id] = []
-                if user_to_priv in priv_users[host_id+room_id]:
+                if (host_id + room_id) not in priv_users:
+                    priv_users[host_id + room_id] = []
+                if user_to_priv in priv_users[host_id + room_id]:
                     message.message.reply("User already privileged")
                 else:
-                    priv_users[host_id+room_id] += [user_to_priv]
+                    priv_users[host_id + room_id] += [user_to_priv]
                     message.message.reply("User " + user_to_priv + " added to privileged users for room " + room_id + " on chat." + host_id)
             else:
                 message.message.reply("Invalid privilege giving")
         else:
             message.message.reply("You are not authorized to add privileged users :( Please contact `@michaelpri` if someone needs priviliges")
-
     elif message.content.startswith("//choose"):
         print "Is choose request"
         if len(message.content.split()) == 1:
@@ -214,10 +220,9 @@ def on_command(message):
         else:
             if " or " in message.content:
                 choices = message.content[8:].split(" or ")
-                message.message.reply("I choose "+random.choice(choices))
+                message.message.reply("I choose " + random.choice(choices))
             else:
                 message.message.reply("I'm not sure what your options are")
-
     elif message.content.startswith("//help"):
         print "Is help request"
         message.message.reply("""My Commands
@@ -226,7 +231,6 @@ def on_command(message):
                              - //weather (city)[, country/state]
                              - //youtube (youtube search term)
                           """)
-
     elif message.content.startswith("//weather"):
         print "Is weather request"
         if len(message.content.split()) == 1:
@@ -249,7 +253,6 @@ def on_command(message):
                         message.message.reply("Couldn't find weather info for " + message.content)
             w = Thread(target=perform_weather_search)
             w.start()
-
     elif message.content.startswith("//youtube"):
         print "Is youtube request"
         if len(message.content.split()) == 1:
@@ -269,7 +272,7 @@ def on_command(message):
             v = Thread(target=perform_youtube_search)
             v.start()
     elif message.content.startswith("//pause"):
-        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id+room_id]):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
             BotProperties.paused = True
             message.message.reply("I am now paused :|")
 

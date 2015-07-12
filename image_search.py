@@ -1,8 +1,8 @@
 import urllib2
-import json
 from bs4 import BeautifulSoup
 import random
 import re
+
 
 def search_image(search_term):
 
@@ -16,6 +16,7 @@ def search_image(search_term):
         page = urllib2.urlopen(req)
     except urllib2.HTTPError, e:
         print e.fp.read()
+        return False
 
     images_page = page.read()
     parsing_page = BeautifulSoup(images_page)
@@ -30,6 +31,7 @@ def search_image(search_term):
         result = i["href"][split_at:end_split]
         if result.endswith((".jpg", ".gif", ".png")):
             try_open = True
+            single_image = None
             try:
                 single_image = urllib2.urlopen(result)
             except:

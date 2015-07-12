@@ -2,7 +2,6 @@
 Copied from the excepthook.py (https://github.com/Charcoal-SE/SmokeDetector/blob/master/excepthook.py)
 on Smoke Detector made by Charcoal (https://github.com/Charcoal-SE/SmokeDetector)
 """
-from datetime import datetime
 import os
 import traceback
 import threading
