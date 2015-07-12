@@ -17,4 +17,4 @@ When running that command, Flake8 will look at the `tox.ini` file. This file con
 
 `tox.ini` also excludes a few directories which shouldn't be checked.
 
-The Contributors of WelcomeBot (michaelpri10, JacobGray and ProgramFOX) will check whether your code passes on Flake8 before it gets merged.
+The Contributors of WelcomeBot (michaelpri10, Jacob-Gray and ProgramFOX) will check whether your code passes on Flake8 before it gets merged.
