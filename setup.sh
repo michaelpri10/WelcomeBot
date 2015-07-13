@@ -40,9 +40,9 @@ else
 fi
 
 git submodule update --init
-sudo pip install beautifulsoup4
-sudo pip install requests --upgrade
-sudo pip install websocket-client --upgrade
+pip install beautifulsoup4
+pip install requests --upgrade
+pip install websocket-client --upgrade
 
 echo "Setup completed."
 exit 0
