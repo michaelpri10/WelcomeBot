@@ -230,6 +230,7 @@ def on_command(message):
                              - //choose (choice) or (choice) [or choice...]
                              - //weather (city)[, country/state]
                              - //youtube (youtube search term)
+                             - //source
                           """)
     elif message.content.startswith("//weather"):
         print "Is weather request"
