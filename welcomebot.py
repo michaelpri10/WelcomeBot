@@ -11,7 +11,6 @@ import os
 import time
 import shelve
 import random
-import re
 from threading import Thread
 
 import ChatExchange.chatexchange.client
@@ -182,12 +181,14 @@ def on_command(message):
 
     elif message.content.startswith("//editmsg"):
         print "Is message edit request"
-        if len(message.content.split()) == 1:
-            message.message.reply("No string given")
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
+            if len(message.content.split()) == 1:
+                message.message.reply("No string given")
+            else:
+                BotProperties.welcome_message = message.content.split()[1:]
+                message.message.reply("Welcome message changed to: " + BotProperties.welcome_message)
         else:
-            BotProperties.welcome_message = message.content.split()[1]
-            message.message.reply("Welcome message changed to: " + BotProperties.welcome_message)
-
+            message.message.reply("You are not authorized to edit the welcome message. Please contact michaelpri if it needs to be changed.")
 
     elif message.content.startswith("//die"):
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
@@ -195,21 +196,21 @@ def on_command(message):
             time.sleep(0.4)
             os._exit(6)
         else:
-            message.message.reply("You are not authorized kill me!!! Muahaha!!!! Please contact michaelpri if I am acting up")
+            message.message.reply("You are not authorized kill me!!! Muahaha!!!! Please contact michaelpri if I am acting up.")
     elif message.content.startswith("//reset"):
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
             message.message.reply("Resetting...")
             time.sleep(0.4)
             os._exit(5)
         else:
-            message.message.reply("You are not authorized reset me. Please contatct michaelpri if I need resetting")
+            message.message.reply("You are not authorized reset me. Please contatct michaelpri if I need resetting.")
     elif message.content.startswith("//source"):
         message.message.reply("My source code can be found on [GitHub](https://github.com/michaelpri10/WelcomeBot)")
     elif message.content.startswith("//pull"):
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
             os._exit(3)
         else:
-            message.message.reply("You are not authorized to pull. Please contatct michaelpri if I need some pulling")
+            message.message.reply("You are not authorized to pull. Please contatct michaelpri if I need some pulling.")
 
     elif message.content.startswith("//priv"):
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
@@ -225,7 +226,7 @@ def on_command(message):
             else:
                 message.message.reply("Invalid privilege giving")
         else:
-            message.message.reply("You are not authorized to add privileged users :( Please contact michaelpri if someone needs privileges")
+            message.message.reply("You are not authorized to add privileged users :( Please contact michaelpri if someone needs privileges.")
     elif message.content.startswith("//choose"):
         print "Is choose request"
         if len(message.content.split()) == 1:
@@ -244,6 +245,7 @@ def on_command(message):
                                  - //weather (city)[, country/state]
                                  - //youtube (youtube search term)
                                  - //source
+                                 - //info
                               """)
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
             message.message.reply("""You are a priveleged user, so you can also use these commands:
@@ -253,6 +255,7 @@ def on_command(message):
                                      - //die
                                      - //priv
                                      - //reset
+                                     - //editmsg [new welcome message]
                                 """)
     elif message.content.startswith("//weather"):
         print "Is weather request"
@@ -298,6 +301,8 @@ def on_command(message):
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
             BotProperties.paused = True
             message.message.reply("I am now paused :|")
+        else:
+            message.message.reply("You are not authorized to pause me. Please contact michaelpri if I need some pausing.")
 
     priv_users.close()
 

@@ -12,6 +12,8 @@ A Stack Exchange chatbot written in Python that uses [ChatExchange](https://gith
  - `//choose (choice) or (choice) [or choice...]` - makes decisions for you so you don't have to. Can accept more than two choices as long as they are separated by `' or '`
  - `//weather (city)[, country/state]` - gets the weather for whatever location you would like
  - `//youtube (youtube search term)` - search [Youtube](https://www.youtube.com/) for and returns a video of or relating to your search term
+ - `//source` - gives you a link to WelcomeBot's source code on Github
+ - `//info` - tells you the host site, room id, and welcome message
  - `//help` - tells you all of the commands listed above in case you forget
 - Commands for privileged users:
  - `//die` - kills the bot if it is acting up
@@ -19,7 +21,8 @@ A Stack Exchange chatbot written in Python that uses [ChatExchange](https://gith
  - `//pull` - updates the bot with the latest commit on Github
  - `//pause` - pauses the bot temporarily
  - `//start` - resumes the bot when it is paused
- - `//priv [user id]` - gives a user the ability to use this command and the five commands listed above
+ - `//editmsg [new welcome message]` - edit the welcome message
+ - `//priv [user id]` - gives a user the ability to use this command and the six commands listed above
 
 ---
 
