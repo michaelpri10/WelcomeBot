@@ -234,7 +234,7 @@ def on_command(message):
                                  - //source
                               """)
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
-            message.message.reply("@"+ event.user.name.replace(" ", "") +""", you are a Priveleged User, so you can use these commands:
+            message.message.reply("""You are a priveleged user, so you can also use these commands:
                                      - //pull
                                      - //pause
                                      - //start
