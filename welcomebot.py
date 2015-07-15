@@ -183,21 +183,32 @@ def on_command(message):
             time.sleep(0.4)
             os._exit(6)
         else:
-            message.message.reply("You are not authorized kill me!!! Muahaha!!!! Please contact `@michaelpri` if I am acting up")
+            message.message.reply("You are not authorized kill me!!! Muahaha!!!! Please contact michaelpri if I am acting up")
     elif message.content.startswith("//reset"):
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
             message.message.reply("Resetting...")
             time.sleep(0.4)
             os._exit(5)
         else:
-            message.message.reply("You are not authorized reset me. Please contatct `@michaelpri` if I need resetting")
+            message.message.reply("You are not authorized reset me. Please contatct michaelpri if I need resetting")
     elif message.content.startswith("//source"):
         message.message.reply("My source code can be found on [GitHub](https://github.com/michaelpri10/WelcomeBot)")
     elif message.content.startswith("//pull"):
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
             os._exit(3)
         else:
-            message.message.reply("You are not authorized to pull. Please contatct `@michaelpri` if I need some pulling")
+            message.message.reply("You are not authorized to pull. Please contatct michaelpri if I need some pulling")
+    elif message.content.startswith("//privhelp"):
+        print "Is privileged commands help request"
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
+            message.message.reply("""Priveleged User Commands
+                                     - //pull
+                                     - //pause
+                                     - //start
+                                     - //die
+                                """)
+        else:
+            message.message.reply("You have no need for these commands, you are not privileged")
     elif message.content.startswith("//priv"):
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
             if len(message.content.split()) == 2:
@@ -212,7 +223,7 @@ def on_command(message):
             else:
                 message.message.reply("Invalid privilege giving")
         else:
-            message.message.reply("You are not authorized to add privileged users :( Please contact `@michaelpri` if someone needs priviliges")
+            message.message.reply("You are not authorized to add privileged users :( Please contact michaelpri if someone needs privileges")
     elif message.content.startswith("//choose"):
         print "Is choose request"
         if len(message.content.split()) == 1:
@@ -223,23 +234,9 @@ def on_command(message):
                 message.message.reply("I choose " + random.choice(choices))
             else:
                 message.message.reply("I'm not sure what your options are")
-     elif message.content.startswith("//help"):
+    elif message.content.startswith("//help"):
         print "Is help request"
-        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
-            message.message.reply("""My Commands
-                                     - //image (image search term)
-                                     - //choose (choice) or (choice) [or choice...]
-                                     - //weather (city)[, country/state]
-                                     - //youtube (youtube search term)
-                                     - //source
-                                     - //pull *
-                                     - //pause *
-                                     - //start *
-                                     - //die *
-                                     * = Only Privileged Users
-                                """)
-        else:
-            message.message.reply("""My Commands
+        message.message.reply("""My Commands
                                  - //image (image search term)
                                  - //choose (choice) or (choice) [or choice...]
                                  - //weather (city)[, country/state]

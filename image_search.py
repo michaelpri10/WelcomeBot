@@ -50,5 +50,3 @@ def search_image(search_term):
         return False
     else:
         return final
-
-print search_image("cow")
