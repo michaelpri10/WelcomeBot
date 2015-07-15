@@ -11,6 +11,7 @@ import os
 import time
 import shelve
 import random
+import re
 from threading import Thread
 
 import ChatExchange.chatexchange.client
@@ -181,6 +182,15 @@ def on_command(message):
         print "Is info request"
         message.message.reply("Host ID:" + host_id + "\n Room ID:" + room_id + "\n Welcome Message:\n\"" + welcome_message + "\"")
 
+    elif message.content.startswith("//editinfo"):
+        print "Is info request"
+        if len(message.content.split()) == 1:
+            message.message.reply("No property to edit given")
+        else:
+            contentString = re.search(r'"([^"]*)"', message.content)
+            message.message.reply(contentString) 
+        
+        
     elif message.content.startswith("//die"):
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
             message.message.reply("I'm dead :(")
