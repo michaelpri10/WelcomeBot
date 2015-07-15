@@ -153,6 +153,8 @@ def on_enter(event):
 def on_command(message):
     priv_users = shelve.open("privileged_users.txt")
     print "Message Posted"
+    message.content.replace("&#39;s", "'")
+    message.content.replace('&quot;', '"')
     if message.content.startswith("//image"):
         print "Is image request"
         if len(message.content.split()) == 1:
@@ -185,7 +187,19 @@ def on_command(message):
             if len(message.content.split()) == 1:
                 message.message.reply("No string given")
             else:
-                BotProperties.welcome_message = " ".join(message.content.split()[1:])
+                u_welcome_message = " ".join(message.content.split()[1:])
+                if '</a>' in u_welcome_message:
+                    text_before = u_welcome_message[:u_welcome_message.find('<a href')]
+                    text_after = u_welcome_message[(u_welcome_message.find('</a>') + 4):]
+                    link_opening = u_welcome_message.find('href="') + 6
+                    link_ending = u_welcome_message.find('" rel=')
+                    link = u_welcome_message[link_opening:link_ending]
+                    text_opening = u_welcome_message.find('ow">') + 4
+                    text_ending = u_welcome_message.find('</a>')
+                    link_text = u_welcome_message[text_opening:text_ending]
+                    BotProperties.welcome_message = text_before + "[" + link_text + "](" + link + ")" + text_after
+                else:
+                    BotProperties.welcome_message = u_welcome_message
                 message.message.reply("Welcome message changed to: " + BotProperties.welcome_message)
         else:
             message.message.reply("You are not authorized to edit the welcome message. Please contact michaelpri if it needs to be changed.")
