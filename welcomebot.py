@@ -176,6 +176,10 @@ def on_command(message):
     elif message.content.startswith("//alive"):
         print "Is alive request"
         message.message.reply("Indeed :D")
+    
+    elif message.content.startswith("//info"):
+        print "Is info request"
+        message.message.reply("Host ID:" + host_id + "\n Room ID:" + room_id + "\n Welcome Message:" + welcome_message)
 
     elif message.content.startswith("//die"):
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
