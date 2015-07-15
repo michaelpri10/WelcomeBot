@@ -27,7 +27,6 @@ logger = logging.getLogger(__name__)
 
 host_id = ''
 room_id = 0
-welcome_message = ""
 bot = None
 room = None
 
@@ -35,7 +34,6 @@ room = None
 def main():
     global host_id
     global room_id
-    global welcome_message
     global bot
     global room
 
@@ -87,10 +85,10 @@ def main():
         room_id = room_id_choice
 
     if 'WelcomeMessage' in os.environ:
-        welcome_message = os.environ['WelcomeMessage']
+        BotProperties.welcome_message = os.environ['WelcomeMessage']
     else:
         print "What would you like the welcome message to be?"
-        welcome_message = raw_input()
+        BotProperties.welcome_message = raw_input()
 
     if 'ChatExchangeU' in os.environ:
         email = os.environ['ChatExchangeU']
@@ -143,14 +141,14 @@ def on_event(event, client):
 
 def on_enter(event):
     print "User Entered"
-    if len(welcome_message) < 1:
+    if len(BotProperties.welcome_message) < 1:
         pass
     else:
         if event.user.id == bot.id or event.user.reputation < 20:
             pass
         else:
             if who_to_welcome.check_user(event.user.id, room_id, 'enter'):
-                room.send_message("@" + event.user.name.replace(" ", "") + " " + welcome_message)
+                room.send_message("@" + event.user.name.replace(" ", "") + " " + BotProperties.welcome_message)
 
 
 def on_command(message):
@@ -180,17 +178,17 @@ def on_command(message):
 
     elif message.content.startswith("//info"):
         print "Is info request"
-        message.message.reply("Host ID:" + host_id + "\n Room ID:" + room_id + "\n Welcome Message:\n\"" + welcome_message + "\"")
+        message.message.reply("Host ID: " + host_id + "\nRoom ID: " + room_id + "\nWelcome Message:\n" + BotProperties.welcome_message)
 
-    elif message.content.startswith("//editinfo"):
-        print "Is info edit request"
+    elif message.content.startswith("//editmsg"):
+        print "Is message edit request"
         if len(message.content.split()) == 1:
             message.message.reply("No string given")
         else:
-            welcome_message = message.content
-            message.message.reply("welcome message changed to:\n" + welcome_message) 
-        
-        
+            BotProperties.welcome_message = message.content.split()[1]
+            message.message.reply("Welcome message changed to: " + BotProperties.welcome_message)
+
+
     elif message.content.startswith("//die"):
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
             message.message.reply("I'm dead :(")
