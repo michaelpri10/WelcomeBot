@@ -185,7 +185,7 @@ def on_command(message):
             if len(message.content.split()) == 1:
                 message.message.reply("No string given")
             else:
-                BotProperties.welcome_message = message.content.split()[1:]
+                BotProperties.welcome_message = " ".join(message.content.split()[1:])
                 message.message.reply("Welcome message changed to: " + BotProperties.welcome_message)
         else:
             message.message.reply("You are not authorized to edit the welcome message. Please contact michaelpri if it needs to be changed.")
