@@ -21,7 +21,6 @@ import image_search
 import weather_search
 import youtube_search
 from BotProperties import BotProperties
-from random import randint
 
 logger = logging.getLogger(__name__)
 
@@ -178,7 +177,7 @@ def on_command(message):
     
     elif message.content.startswith("//testenter"):
         print "Is testenter request"
-        room.send_message("@skynetTestUser" + randint(0,9) +" " + BotProperties.welcome_message)
+        room.send_message("@skynetTestUser " + BotProperties.welcome_message)
 
     elif message.content.startswith("//info"):
         print "Is info request"
