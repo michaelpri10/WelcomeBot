@@ -177,11 +177,7 @@ def on_command(message):
     elif message.content.startswith("//alive"):
         print "Is alive request"
         message.message.reply("Indeed :D")
-        
-    elif message.content.startswith("//testenter"):
-        print "Is testenter request"
-        room.send_message("@testUser " + welcome_message)
-    
+
     elif message.content.startswith("//info"):
         print "Is info request"
         message.message.reply("Host ID:" + host_id + "\n Room ID:" + room_id + "\n Welcome Message:\n\"" + welcome_message + "\"")
