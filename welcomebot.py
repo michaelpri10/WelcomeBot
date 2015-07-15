@@ -198,17 +198,7 @@ def on_command(message):
             os._exit(3)
         else:
             message.message.reply("You are not authorized to pull. Please contatct michaelpri if I need some pulling")
-    elif message.content.startswith("//privhelp"):
-        print "Is privileged commands help request"
-        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
-            message.message.reply("""Priveleged User Commands
-                                     - //pull
-                                     - //pause
-                                     - //start
-                                     - //die
-                                """)
-        else:
-            message.message.reply("You have no need for these commands, you are not privileged")
+
     elif message.content.startswith("//priv"):
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
             if len(message.content.split()) == 2:
@@ -244,11 +234,13 @@ def on_command(message):
                                  - //source
                               """)
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
-            message.message.reply("""You are a Priveleged User, so you can use these commands:
+            message.message.reply("@"+ event.user.name.replace(" ", "") +""", you are a Priveleged User, so you can use these commands:
                                      - //pull
                                      - //pause
                                      - //start
                                      - //die
+                                     - //priv
+                                     - //reset
                                 """)
     elif message.content.startswith("//weather"):
         print "Is weather request"
