@@ -153,7 +153,9 @@ def on_enter(event):
 def on_command(message):
     priv_users = shelve.open("privileged_users.txt")
     print "Message Posted"
-    print message.content
+    message.content = message.content.replace("&#39;s", "'")
+    message.content = message.content.replace('&quot;', '"')
+    message.content = message.content.replace("&#39;", "'")
     if message.content.startswith("//image"):
         print "Is image request"
         if len(message.content.split()) == 1:
@@ -175,10 +177,10 @@ def on_command(message):
     elif message.content.startswith("//alive"):
         print "Is alive request"
         message.message.reply("Indeed :D")
-    
+
     elif message.content.startswith("//testenter"):
         print "Is testenter request"
-        room.send_message("@skynetTestUser " + BotProperties.welcome_message)
+        room.send_message("@SkynetTestUser " + BotProperties.welcome_message)
 
     elif message.content.startswith("//info"):
         print "Is info request"
