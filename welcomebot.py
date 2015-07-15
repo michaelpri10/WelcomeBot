@@ -181,12 +181,15 @@ def on_command(message):
         message.message.reply("Host ID: " + host_id + "\nRoom ID: " + room_id + "\nWelcome Message:\n" + BotProperties.welcome_message)
 
     elif message.content.startswith("//editmsg"):
-        print "Is message edit request"
-        if len(message.content.split()) == 1:
-            message.message.reply("No string given")
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
+            print "Is message edit request"
+            if len(message.content.split()) == 1:
+                message.message.reply("No string given")
+            else:
+                BotProperties.welcome_message = message.content.split()[1]
+                message.message.reply("Welcome message changed to: " + BotProperties.welcome_message)
         else:
-            BotProperties.welcome_message = message.content.split()[1]
-            message.message.reply("Welcome message changed to: " + BotProperties.welcome_message)
+            message.message.reply("You are not authorized to use this command")
 
 
     elif message.content.startswith("//die"):
