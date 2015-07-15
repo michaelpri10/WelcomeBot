@@ -21,6 +21,7 @@ import image_search
 import weather_search
 import youtube_search
 from BotProperties import BotProperties
+from random import randint
 
 logger = logging.getLogger(__name__)
 
