@@ -185,10 +185,10 @@ def on_command(message):
     elif message.content.startswith("//editinfo"):
         print "Is info edit request"
         if len(message.content.split()) == 1:
-            message.message.reply("No property to edit given")
+            message.message.reply("No string given")
         else:
-            contentString = re.search(r'"([^"]*)"', message.content)
-            message.message.reply(contentString[0]) 
+            welcome_message = message.content
+            message.message.reply("welcome message changed to:\n" + welcome_message) 
         
         
     elif message.content.startswith("//die"):
