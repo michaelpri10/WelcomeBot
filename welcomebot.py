@@ -153,8 +153,7 @@ def on_enter(event):
 def on_command(message):
     priv_users = shelve.open("privileged_users.txt")
     print "Message Posted"
-    message.content.replace("&#39;s", "'")
-    message.content.replace('&quot;', '"')
+    print message.content
     if message.content.startswith("//image"):
         print "Is image request"
         if len(message.content.split()) == 1:
@@ -188,7 +187,9 @@ def on_command(message):
                 message.message.reply("No string given")
             else:
                 u_welcome_message = " ".join(message.content.split()[1:])
+                print u_welcome_message
                 if '</a>' in u_welcome_message:
+                    print "is link"
                     text_before = u_welcome_message[:u_welcome_message.find('<a href')]
                     text_after = u_welcome_message[(u_welcome_message.find('</a>') + 4):]
                     link_opening = u_welcome_message.find('href="') + 6
