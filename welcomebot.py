@@ -180,7 +180,7 @@ def on_command(message):
         
     elif message.content.startswith("//testenter"):
         print "Is testenter request"
-        room.send_message("@testUser" + randint(0,9) + " " + welcome_message)
+        room.send_message("@testUser " + welcome_message)
     
     elif message.content.startswith("//info"):
         print "Is info request"
