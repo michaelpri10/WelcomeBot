@@ -153,9 +153,13 @@ def on_enter(event):
 def on_command(message):
     priv_users = shelve.open("privileged_users.txt")
     print "Message Posted"
-    message.content = message.content.replace("&#39;s", "'")
+    message.content = message.content.replace("&#39;", "'")
     message.content = message.content.replace('&quot;', '"')
     message.content = message.content.replace("&#39;", "'")
+    message.content = message.content.replace("</i>", "*")
+    message.content = message.content.replace("<i>", "*")
+    message.content = message.content.replace("</b>", "**")
+    message.content = message.content.replace("<b>", "**")
     if message.content.startswith("//image"):
         print "Is image request"
         if len(message.content.split()) == 1:
