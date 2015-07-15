@@ -183,12 +183,12 @@ def on_command(message):
         message.message.reply("Host ID:" + host_id + "\n Room ID:" + room_id + "\n Welcome Message:\n\"" + welcome_message + "\"")
 
     elif message.content.startswith("//editinfo"):
-        print "Is info request"
+        print "Is info edit request"
         if len(message.content.split()) == 1:
             message.message.reply("No property to edit given")
         else:
             contentString = re.search(r'"([^"]*)"', message.content)
-            message.message.reply(contentString) 
+            message.message.reply(contentString[0]) 
         
         
     elif message.content.startswith("//die"):
