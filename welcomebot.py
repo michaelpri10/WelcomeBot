@@ -177,7 +177,7 @@ def on_command(message):
     
     elif message.content.startswith("//testenter"):
         print "Is testenter request"
-        room.send_message("@skynetTestUser " + BotProperties.welcome_message)
+        room.send_message("@skynetTestUser" + randint(0,9) +" " + BotProperties.welcome_message)
 
     elif message.content.startswith("//info"):
         print "Is info request"
