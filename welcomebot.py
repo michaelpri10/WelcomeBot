@@ -153,7 +153,6 @@ def on_enter(event):
 def on_command(message):
     priv_users = shelve.open("privileged_users.txt")
     print "Message Posted"
-    message.content = message.content.replace("&#39;", "'")
     message.content = message.content.replace('&quot;', '"')
     message.content = message.content.replace("&#39;", "'")
     message.content = message.content.replace("</i>", "*")
