@@ -159,6 +159,8 @@ def on_command(message):
     message.content = message.content.replace("<i>", "*")
     message.content = message.content.replace("</b>", "**")
     message.content = message.content.replace("<b>", "**")
+    message.content = message.content.replace("</i></b>", "***")
+    message.content = message.content.replace("<b><i>", "***")
     if message.content.startswith("//image"):
         print "Is image request"
         if len(message.content.split()) == 1:
