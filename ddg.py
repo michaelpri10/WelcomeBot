@@ -1,3 +1,6 @@
+import urllib2;
 
 def search(string):
-  print "https://api.duckduckgo.com/?q=" + string + "&format=json&pretty=1"
+  ddg = urllib2.urlopen("https://api.duckduckgo.com/?q=" + string + "&format=json&pretty=1")
+  return json.load(ddg)
+  
