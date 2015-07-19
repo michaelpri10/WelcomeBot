@@ -190,7 +190,8 @@ def on_command(message):
     
     elif message.content.startswith("//search"):
         print "Is search request"
-        room.send_message("Test search")
+        results = ddg.search("batman")
+        room.send_message(results[0]["Text"])
 
     elif message.content.startswith("//info"):
         print "Is info request"
