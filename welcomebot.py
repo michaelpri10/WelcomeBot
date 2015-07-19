@@ -20,6 +20,7 @@ import who_to_welcome
 import image_search
 import weather_search
 import youtube_search
+import ddg
 from BotProperties import BotProperties
 
 logger = logging.getLogger(__name__)
@@ -186,6 +187,10 @@ def on_command(message):
     elif message.content.startswith("//testenter"):
         print "Is testenter request"
         room.send_message("@SkynetTestUser " + BotProperties.welcome_message)
+    
+    elif message.content.startswith("//search"):
+        print "Is search request"
+        room.send_message("Test search")
 
     elif message.content.startswith("//info"):
         print "Is info request"
