@@ -191,10 +191,10 @@ def on_command(message):
     elif message.content.startswith("//search"):
         print "Is search request"
         if len(message.content.split()) == 1:
-                message.message.reply("Can't search, No terms given")
-            else:
-                results = ddg.search(message.content.split()[1])
-                room.send_message(results["RelatedTopics"][0]["Text"])
+            message.message.reply("Can't search, No terms given")
+        else:
+            results = ddg.search(message.content.split()[1])
+            room.send_message(results["RelatedTopics"][0]["Text"])
 
     elif message.content.startswith("//info"):
         print "Is info request"
