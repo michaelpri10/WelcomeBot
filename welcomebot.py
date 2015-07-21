@@ -193,7 +193,7 @@ def on_command(message):
         if len(message.content.split()) == 1:
             message.message.reply("Can't search, No terms given")
         else:
-            results = ddg.search(message.content.split()[1])
+            results = ddg.search(message.content.replace("//search ",""))
             room.send_message(results["RelatedTopics"][0]["Text"])
 
     elif message.content.startswith("//info"):
