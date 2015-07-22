@@ -194,7 +194,7 @@ def on_command(message):
             message.message.reply("Can't search, No terms given")
         else:
             results = ddg.search(message.content.replace("//search ",""))
-            room.send_message(message.content.replace("//search ",""))
+            room.send_message(results["term"])
             room.send_message(results["RelatedTopics"][0]["Text"])
 
     elif message.content.startswith("//info"):
