@@ -26,17 +26,61 @@ A Stack Exchange chatbot written in Python that uses [ChatExchange](https://gith
 
 ---
 
-To setup run:
+##Setup
 
-    git clone https://github.com/michaelpri10/WelcomeBot.git
-    cd WelcomeBot
-    git submodule init
-    git subodule update
-    sudo pip install beautifulsoup4
-    sudo pip install requests --upgrade
-    sudo pip install websocket-client --upgrade
+In all cases, you are supposed to have [Git](http://git-scm.com/) installed, as well as
+[pip Python package manager](https://pip.pypa.io/en/latest/installing.html#install-pip).
 
-Or you can just run the `setup.sh` file.
+###Linux
+
+Run `setup.sh`:
+
+```sh
+dev@welcomebot$ ./setup.sh
+Setting up WelcomeBot.
+Cloning WelcomeBot...
+Cloning into 'michaelpri10/WelcomeBot'...
+Submodule 'ChatExchange' (https://github.com/michaelpri10/ChatExchange.git) registered for path 'ChatExchange'
+Cloning into 'ChatExchange'...
+Submodule path 'ChatExchange': checked out '...'
+Successfully installed beautifulsoup4-4.4.0
+Successfully installed requests-2.7.0
+Successfully installed websocket-client-0.32.0
+Setup completed.
+
+dev@welcomebot$ ./setup.sh --help
+Set up WelcomeBot.
+
+Usage:
+  ./setup.sh [--help | --no-clone]
+
+Options:
+  --help      Print this help message and exit
+  --no-clone  Do NOT clone a WelcomeBot git repo (default behavior when inside a repo)
+
+```
+
+You can obtain our `setup.sh` from our [Releases](https://github.com/michaelpri10/WelcomeBot/releases)
+list on GitHub; in that case, it will try to clone and install the WelcomeBot version it was released for.
+
+Otherwise you can `git clone` the latest development version of WelcomeBot source code from GitHub
+yourself and then run `setup.sh` included in repository.
+
+###Windows
+
+On Windows, installation is not so straightforward. You first have to clone WelcomeBot source code yourself:
+
+```cmd
+C:\Users\WelcomeBot> git clone https://github.com/michaelpri10/WelcomeBot.git
+Cloning into 'WelcomeBot'...
+C:\Users\WelcomeBot> cd WelcomeBot
+```
+
+And then run `setup.bat` included in repository:
+
+```cmd
+C:\Users\WelcomeBot\WelcomeBot> .\setup.bat
+```
 
 ---
 
