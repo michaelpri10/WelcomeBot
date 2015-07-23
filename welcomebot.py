@@ -252,13 +252,13 @@ def on_command(message):
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
             if len(message.content.split()) == 2:
                 user_to_priv = message.content.split()[1]
-                if (host_id + room_id) not in priv_users:
-                    priv_users[host_id + room_id] = []
-                if user_to_priv in priv_users[host_id + room_id]:
+                if (host_id + str(room_id)) not in priv_users:
+                    priv_users[host_id + str(room_id)] = []
+                if user_to_priv in priv_users[host_id + str(room_id)]:
                     message.message.reply("User already privileged")
                 else:
-                    priv_users[host_id + room_id] += [user_to_priv]
-                    message.message.reply("User " + user_to_priv + " added to privileged users for room " + room_id + " on chat." + host_id)
+                    priv_users[host_id + str(room_id)] += [user_to_priv]
+                    message.message.reply("User " + user_to_priv + " added to privileged users for room " + str(room_id) + " on chat." + host_id)
             else:
                 message.message.reply("Invalid privilege giving")
         else:
