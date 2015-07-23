@@ -11,6 +11,8 @@ import os
 import time
 import shelve
 import random
+import re
+import requests
 from threading import Thread
 
 import ChatExchange.chatexchange.client
@@ -129,11 +131,11 @@ def on_event(event, client):
         if isinstance(event, ChatExchange.chatexchange.events.UserEntered):
             on_enter(event)
         elif isinstance(event, ChatExchange.chatexchange.events.MessagePosted):
-            on_command(event)
+            on_command(event, client)
     else:
         priv_users = shelve.open("privileged_users.txt")
         if isinstance(event, ChatExchange.chatexchange.events.MessagePosted) and event.content.startswith("//start"):
-            if (event.user.id == 121401 and host_id == 'stackexchange.com') or (event.user.id == 284141 and host_id == 'meta.stackexchange.com') or (event.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(event.user.id) in priv_users[host_id + room_id]):
+            if (event.user.id == 121401 and host_id == 'stackexchange.com') or (event.user.id == 284141 and host_id == 'meta.stackexchange.com') or (event.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(event.user.id) in priv_users[host_id + str(room_id)]):
                 BotProperties.paused = False
                 event.message.reply("I am now resuming :)")
         priv_users.close()
@@ -151,7 +153,7 @@ def on_enter(event):
                 room.send_message("@" + event.user.name.replace(" ", "") + " " + BotProperties.welcome_message)
 
 
-def on_command(message):
+def on_command(message, client):
     priv_users = shelve.open("privileged_users.txt")
     print "Message Posted"
     message.content = message.content.replace('&quot;', '"')
@@ -203,7 +205,7 @@ def on_command(message):
 
     elif message.content.startswith("//editmsg"):
         print "Is message edit request"
-        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + str(room_id)]):
             if len(message.content.split()) == 1:
                 message.message.reply("No string given")
             else:
@@ -227,14 +229,14 @@ def on_command(message):
             message.message.reply("You are not authorized to edit the welcome message. Please contact michaelpri if it needs to be changed.")
 
     elif message.content.startswith("//die"):
-        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + str(room_id)]):
             message.message.reply("I'm dead :(")
             time.sleep(0.4)
             os._exit(6)
         else:
             message.message.reply("You are not authorized kill me!!! Muahaha!!!! Please contact michaelpri if I am acting up.")
     elif message.content.startswith("//reset"):
-        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + str(room_id)]):
             message.message.reply("Resetting...")
             time.sleep(0.4)
             os._exit(5)
@@ -243,13 +245,13 @@ def on_command(message):
     elif message.content.startswith("//source"):
         message.message.reply("My source code can be found on [GitHub](https://github.com/michaelpri10/WelcomeBot)")
     elif message.content.startswith("//pull"):
-        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + str(room_id)]):
             os._exit(3)
         else:
             message.message.reply("You are not authorized to pull. Please contatct michaelpri if I need some pulling.")
 
     elif message.content.startswith("//priv"):
-        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + str(room_id)]):
             if len(message.content.split()) == 2:
                 user_to_priv = message.content.split()[1]
                 if (host_id + str(room_id)) not in priv_users:
@@ -284,7 +286,7 @@ def on_command(message):
                                  - //info
                                  - //testenter
                               """)
-        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + str(room_id)]):
             message.message.reply("""You are a priveleged user, so you can also use these commands:
                                      - //pull
                                      - //pause
@@ -335,11 +337,20 @@ def on_command(message):
             v = Thread(target=perform_youtube_search)
             v.start()
     elif message.content.startswith("//pause"):
-        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + str(room_id)]):
             BotProperties.paused = True
             message.message.reply("I am now paused :|")
         else:
             message.message.reply("You are not authorized to pause me. Please contact michaelpri if I need some pausing.")
+    elif re.compile("^:[0-9]+ delete$").search(message.message.content_source):
+        if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + str(room_id)]):
+            message_to_delete = client.get_message(int(message.message.content_source.split(" ")[0][1:]))
+            try:
+                message_to_delete.delete()
+            except requests.HTTPError:
+                pass
+        else:
+            message.message.reply("You are not authorized to delete one of my messages.")
 
     priv_users.close()
 
