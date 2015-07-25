@@ -196,9 +196,8 @@ def on_command(message, client):
             message.message.reply("Can't search, No terms given")
         else:
             results = ddg.search(message.content.replace("//search ",""))
-            room.send_message(results["term"])
-            room.send_message(results["RelatedTopics"][0]["Text"])
-
+            room.send_message(results.results[0]["link"])
+            
     elif message.content.startswith("//info"):
         print "Is info request"
         message.message.reply("Host ID: " + host_id + "\nRoom ID: " + room_id + "\nWelcome Message:\n" + BotProperties.welcome_message)
