@@ -28,7 +28,7 @@ def search(string):
     
     
   
-  send["results"] = json.load(ddg)
+  send["results"] = result
   send["more"] = site
   send["term"] = string
   
