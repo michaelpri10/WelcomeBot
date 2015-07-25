@@ -22,7 +22,7 @@ import who_to_welcome
 import image_search
 import weather_search
 import youtube_search
-import ddg
+import google_search
 from BotProperties import BotProperties
 
 logger = logging.getLogger(__name__)
@@ -156,14 +156,8 @@ def on_enter(event):
 def on_command(message, client):
     priv_users = shelve.open("privileged_users.txt")
     print "Message Posted"
-    message.content = message.content.replace('&quot;', '"')
-    message.content = message.content.replace("&#39;", "'")
-    message.content = message.content.replace("</i>", "*")
-    message.content = message.content.replace("<i>", "*")
-    message.content = message.content.replace("</b>", "**")
-    message.content = message.content.replace("<b>", "**")
-    message.content = message.content.replace("</i></b>", "***")
-    message.content = message.content.replace("<b><i>", "***")
+    message.content = chaterize_message(message.content)
+
     if message.content.startswith("//image"):
         print "Is image request"
         if len(message.content.split()) == 1:
@@ -175,7 +169,7 @@ def on_command(message, client):
                 print image
                 if image is False:
                     print "No Image"
-                    message.message.reply("No image was found for " + search_term)
+                    message.message.reply("No image was found for " + message.content[8:])
                 else:
                     print message.content
                     print search_term
@@ -189,15 +183,26 @@ def on_command(message, client):
     elif message.content.startswith("//testenter"):
         print "Is testenter request"
         room.send_message("@SkynetTestUser " + BotProperties.welcome_message)
-    
+
     elif message.content.startswith("//search"):
         print "Is search request"
         if len(message.content.split()) == 1:
             message.message.reply("Can't search, No terms given")
         else:
-            results = ddg.search(message.content.replace("//search ",""))
-            room.send_message(results.results[0]["link"])
-            
+            def perform_google_search():
+                search_term = "+".join(message.content.split()[1:])
+                search_results = google_search.google_search(search_term)
+                print search_results
+                if search_results is False:
+                    print "No Results"
+                    message.message.reply("No results were found for " + message.content[9:])
+                else:
+                    print message.content
+                    print search_term
+                    message.message.reply("***" + message.content[9:] + "***: " + chaterize_message(search_results).replace("\n", " "))
+            g = Thread(target=perform_google_search)
+            g.start()
+
     elif message.content.startswith("//info"):
         print "Is info request"
         message.message.reply("Host ID: " + host_id + "\nRoom ID: " + room_id + "\nWelcome Message:\n" + BotProperties.welcome_message)
@@ -353,6 +358,16 @@ def on_command(message, client):
 
     priv_users.close()
 
+def chaterize_message(message):
+    message = message.replace('&quot;', '"')
+    message = message.replace("&#39;", "'")
+    message = message.replace("</i>", "*")
+    message = message.replace("<i>", "*")
+    message = message.replace("</b>", "**")
+    message = message.replace("<b>", "**")
+    message = message.replace("</i></b>", "***")
+    message = message.replace("<b><i>", "***")
+    return message
 
 def setup_logging():
     logging.basicConfig(level=logging.INFO)
