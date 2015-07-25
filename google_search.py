@@ -15,7 +15,7 @@ def google_search(search_term):
     # Process the JSON string.
     results = json.load(response)
     # now have some fun with the results...
-    if len(results["responseData"]["results"]) > 1:
+    if len(results["responseData"]["results"]) == 0:
         return False
     else:
         return results["responseData"]["results"][0]["content"]
