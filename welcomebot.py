@@ -358,7 +358,9 @@ def on_command(message, client):
 
     priv_users.close()
 
+
 def chaterize_message(message):
+
     message = message.replace('&quot;', '"')
     message = message.replace("&#39;", "'")
     message = message.replace("</i>", "*")
@@ -368,6 +370,7 @@ def chaterize_message(message):
     message = message.replace("</i></b>", "***")
     message = message.replace("<b><i>", "***")
     return message
+
 
 def setup_logging():
     logging.basicConfig(level=logging.INFO)
