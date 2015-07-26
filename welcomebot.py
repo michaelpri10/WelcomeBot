@@ -199,7 +199,8 @@ def on_command(message, client):
                 else:
                     print message.content
                     print search_term
-                    message.message.reply("***" + message.content[9:] + "***: " + chaterize_message(search_results).replace("\n", " "))
+                    message.message.reply("Search results for " + message.content[9:] + ": ")
+                    room.send_message("***" + message.content[9:] + "***: " + chaterize_message(search_results).replace("\n", " "))
             g = Thread(target=perform_google_search)
             g.start()
 
@@ -289,6 +290,7 @@ def on_command(message, client):
                                  - //source
                                  - //info
                                  - //testenter
+                                 //search [search term]
                               """)
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
             message.message.reply("""You are a priveleged user, so you can also use these commands:
