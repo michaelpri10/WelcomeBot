@@ -18,4 +18,4 @@ def google_search(search_term):
     if len(results["responseData"]["results"]) == 0:
         return False
     else:
-        return results["responseData"]["results"][0]["content"]
+        return results["responseData"]["results"]
