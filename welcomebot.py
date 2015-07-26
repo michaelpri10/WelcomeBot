@@ -200,7 +200,7 @@ def on_command(message, client):
                     print message.content
                     print search_term
                     message.message.reply("Search results for **" + message.content[9:] + "**: ")
-                    room.send_message("[" + search_results[0]["titleNoFormatting"] + "]("+ search_results[0]["url"]+"):\n"+chaterize_message(search_results[0]["content"]).replace("\n", " "))
+                    room.send_message("[" + search_results[0]["titleNoFormatting"] + "]("+ search_results[0]["url"]+"): "+chaterize_message(search_results[0]["content"]).replace("\n", " "))
             g = Thread(target=perform_google_search)
             g.start()
 
