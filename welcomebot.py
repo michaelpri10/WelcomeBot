@@ -287,15 +287,14 @@ def on_command(message, client):
     elif message.content.startswith("//help"):
         print "Is help request"
         message.message.reply("""My Commands
-                                 - //image (image search term)
+                                 - //image (search term)
                                  - //choose (choice) or (choice) [or choice...]
                                  - //weather (city)[, country/state]
-                                 - //youtube (youtube search term)
+                                 - //youtube (search term)
                                  - //source
                                  - //info
-                                 - //testenter
+                                 - //search (search term)
                             """)
-        room.send_message("&nbsp;&nbsp;- //search (search term)")
         if (message.user.id == 121401 and host_id == 'stackexchange.com') or (message.user.id == 284141 and host_id == 'meta.stackexchange.com') or (message.user.id == 4087357 and host_id == 'stackoverflow.com') or (str(message.user.id) in priv_users[host_id + room_id]):
             message.message.reply("""You are a priveleged user, so you can also use these commands:
                                      - //pull
