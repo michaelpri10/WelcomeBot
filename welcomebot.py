@@ -204,7 +204,7 @@ def on_command(message, client):
                         room.send_message("[" + search_results[i]["titleNoFormatting"] + "]("+ search_results[i]["url"]+"): ")
                         room.send_message(chaterize_message(search_results[i]["content"]).replace("\n", " "))
                     
-                    room.send_message("[See More...](https://www.google.com/?gws_rd=ssl#q="+search_term+")")
+                    room.send_message("[See More...](https://www.google.com/?gws_rd=ssl#q=" + search_term + ")")
             g = Thread(target=perform_google_search)
             g.start()
 
