@@ -187,31 +187,24 @@ def on_command(message, client):
     elif message.content.startswith("//search"):
         print "Is search request"
         if len(message.content.split()) == 1:
-            message.message.reply("Can't search, no terms given")
+            message.message.reply("Can't search, No terms given")
         else:
             def perform_google_search():
                 search_term = "+".join(message.content.split()[1:])
-                try:
-                    results, moreResultsUrl = google_search.google_search(search_term)
-                    print results
-                except TypeError:
-                    print "No results"
+                search_results = google_search.google_search(search_term)
+                print search_results
+                if search_results is False:
+                    print "No Results"
                     message.message.reply("No results were found for " + message.content[9:])
-                    return
-
-                print message.content
-                print search_term
-
-                message.message.reply("Search results for **%s**: " % message.content[9:])
-
-                # sould be configurable
-                count = len(results) < 3 and len(results) or 3
-                for i in range(0, count):
-                    res = results[i]
-                    room.send_message("[%s](%s)" % (res['titleNoFormatting'], res['unescapedUrl']))
-                    room.send_message(chaterize_message(res["content"]).replace("\n", " "))
-                    room.send_message("[See More...](%s)" % moreResultsUrl)
-
+                else:
+                    print message.content
+                    print search_term
+                    message.message.reply("Search results for **" + message.content[9:] + "**: ")
+                    for i in range(0,3):
+                        room.send_message("[" + search_results[i]["titleNoFormatting"] + "]("+ search_results[i]["url"]+"): ")
+                        room.send_message(chaterize_message(search_results[i]["content"]).replace("\n", " "))
+                    
+                    room.send_message("[See More...](https://www.google.com/?gws_rd=ssl#q=" + search_term + ")")
             g = Thread(target=perform_google_search)
             g.start()
 
