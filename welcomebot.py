@@ -210,7 +210,8 @@ def on_command(message, client):
                     res = results[i]
                     room.send_message("[%s](%s)" % (res['titleNoFormatting'], res['unescapedUrl']))
                     room.send_message(chaterize_message(res["content"]).replace("\n", " "))
-                    room.send_message("[See More...](%s)" % moreResultsUrl)
+
+                room.send_message("[See More...](%s)" % moreResultsUrl)
 
             g = Thread(target=perform_google_search)
             g.start()

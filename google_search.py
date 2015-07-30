@@ -35,6 +35,6 @@ def google_search(search_term):
 
     # now have some fun with the results...
     if len(results["responseData"]["results"]) > 0:
-        return results["responseData"]["results"], results["cursor"]["moreResultsUrl"]
+        return results["responseData"]["results"], results["responseData"]["cursor"]["moreResultsUrl"]
 
     return False
