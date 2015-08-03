@@ -25,6 +25,7 @@ def google_search(search_term):
     # The request also includes the userip parameter which provides the end
     # user's IP address. Doing so will help distinguish this legitimate
     # server-side traffic from traffic which doesn't come from an end-user.
+    search_term = search_term.encode('ascii', errors='replace')
     url = "https://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=%s&userip=USERS-IP-ADDRESS" % search_term
 
     request = urllib2.Request(url, None)
