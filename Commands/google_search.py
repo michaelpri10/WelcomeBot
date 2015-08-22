@@ -4,22 +4,17 @@ import json
 
 def google_search(search_term):
     """
-    Searches for a `search_term` which should be a string or a value convertable to string.
+    Searches for a `search_term` which should be a string or a value that can be converted into a string.
 
     Parameters:
         - str `search_term`: a string to search for
 
     Returns a tuple (on success):
-        - first value is a list of search results for the `search_term` returned by Google API
+        - first value is a the first search results for the `search_term` returned by the Google API
         - second value is a Google Search UI URL, where more results can be obtained
 
     Returns False (on failure).
 
-    --
-    Authors:
-        - michaelpri10
-        - Jacob-Gray
-        - Kubo2
     """
 
     # The request also includes the userip parameter which provides the end
@@ -36,6 +31,6 @@ def google_search(search_term):
 
     # now have some fun with the results...
     if len(results["responseData"]["results"]) > 0:
-        return results["responseData"]["results"], results["responseData"]["cursor"]["moreResultsUrl"]
+        return [results["responseData"]["results"][0], results["responseData"]["cursor"]["moreResultsUrl"], "message"]
 
     return False
