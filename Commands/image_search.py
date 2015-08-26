@@ -17,7 +17,7 @@ def image_search(message):
     try:
         page = urllib2.urlopen(req)
     except urllib2.HTTPError, e:
-        return ["No images found for {}".format(message.split()[1:]), "message"]
+        return ["No images found for {}".format(search_term), "message"]
 
     images_page = page.read()
     parsing_page = BeautifulSoup(images_page)
@@ -48,6 +48,6 @@ def image_search(message):
         counter += 1
 
     if not final:
-        return ["No images found for {}".format(message.split()[1:]), "message"]
+        return ["No images found for {}".format(search_term), "message"]
     else:
         return [final, "message"]

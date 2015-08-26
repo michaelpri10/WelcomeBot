@@ -1,8 +1,9 @@
 import os
 from Commmands.image_search import image_search
-from Commands.choose import choose
+from Commands.other_commands import choose, bot_info, is_alive, source_code, help_menu
 from Commands.google_search import google_search
 from Commands.weather_search import weather_search
+from Commands.youtube_search import youtube_search
 
 class Bot:
     paused = False
@@ -21,8 +22,8 @@ class Bot:
                    '//search': google_search,
                    '//weather': weather_search,
                    '//info': bot_info,
-                   '//alive': is_alive, # ["I'm alive :) (running on commit: ({})".format(os.popen('git log --pretty=format:"%h" -n 1').read()), "message"],
-                   '//source': source_code, # ["My source code can be found on [GitHub](https://github.com/michaelpri10/WelcomeBot)", "message"],
+                   '//alive': is_alive, 
+                   '//source': source_code, 
                    '//help': help_menu
                    }
                priv_commands:
